@@ -1,0 +1,80 @@
+.header-wrapper {
+  height: 40px;
+  width: calc(100% - 60px);
+  display: flex;
+  background-color: #222222;
+  padding: 15px 30px;
+  justify-content: space-between;
+}
+
+.header-logo {
+  display: flex;
+  flex-shrink: 0;
+  user-select: none;
+
+  &--link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  &--name {
+    font-family: 'Rubik', cursive;
+    color: var(--white);
+    font-size: 20px;
+  }
+}
+
+.header-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-shrink: 0;
+  user-select: none;
+
+  &--button {
+    font-family: 'Rubik', cursive;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white);
+    padding: 9px 20px;
+    border-radius: 5px;
+    background-color: var(--black-background);
+    border: 2px solid var(--black-background);
+    outline: none;
+    transition:
+      border 300ms cubic-bezier(0.33, 1, 0.68, 1),
+      background-color 300ms cubic-bezier(0.33, 1, 0.68, 1),
+      color 300ms cubic-bezier(0.33, 1, 0.68, 1);
+
+    &:hover {
+      cursor: pointer;
+      border: 2px solid var(--accent-green);
+    }
+
+    &:active {
+      color: var(--black-background);
+      border: 2px solid var(--accent-green);
+      background-color: var(--accent-green);
+    }
+  }
+
+  &--button.active {
+    color: var(--black-background);
+    border: 2px solid var(--accent-green);
+    background-color: var(--accent-green);
+  }
+}
+
+.header-avatar {
+  display: flex;
+  justify-self: flex-end;
+  flex-shrink: 0;
+
+  &--img {
+    border-radius: 5px;
+    border: 1px solid var(--button-outline);
+  }
+}

@@ -1,0 +1,19 @@
+.footer-wrapper {
+  position: absolute;
+  height: calc(70px - 21px * 2);
+  width: 100%;
+  background-color: var(--black-background);
+  left: 0;
+  bottom: 0;
+  padding: 21px 0;
+}
+
+.footer-copyright {
+  display: flex;
+  color: var(--white);
+  font-family: 'Rubik', cursive;
+  align-items: center;
+  gap: 6px;
+  max-width: 60vw;
+  margin: 0 auto;
+}
