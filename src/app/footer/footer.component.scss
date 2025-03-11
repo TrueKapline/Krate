@@ -2,7 +2,7 @@
   position: absolute;
   height: calc(70px - 21px * 2);
   width: 100%;
-  background-color: var(--black-background);
+  background-color: var(--text);
   left: 0;
   bottom: 0;
   padding: 21px 0;
@@ -10,7 +10,7 @@
 
 .footer-copyright {
   display: flex;
-  color: var(--white);
+  color: var(--background);
   font-family: 'Rubik', serif;
   align-items: center;
   gap: 6px;

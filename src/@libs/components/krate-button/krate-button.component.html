@@ -1,7 +1,6 @@
 <button type="{{ type }}">
   <span
-    [style.width.px]="btnWidth"
-    [style.height.px]="btnHeight"
+    [ngClass]="['btn', 'btn__' + size]"
     class="button_top"
   >{{ label }}</span>
 </button>

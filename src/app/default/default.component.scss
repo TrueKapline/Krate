@@ -9,17 +9,24 @@
   justify-content: center;
   align-items: center;
   font-family: 'Rubik', serif;
-  color: var(--black-background);
+  color: var(--text);
+  transition: color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .default-container {
-  border: 3px solid var(--black-background);
+  border: 3px solid var(--text);
+  background-color: var(--card-background);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30px;
+  margin: 30px;
+  transition:
+    padding 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
+    border-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .default--logo {
@@ -31,16 +38,41 @@
 
 .default--name {
   font-size: 38px;
+  color: var(--heading);
+  transition: color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
 }
 
 .default--desc {
   text-align: center;
   margin-bottom: 25px;
   max-width: 350px;
+  transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .default--buttons {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.svg_bg {
+  fill: var(--svg-background);
+  transition: var(--switch-theme-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svg_box {
+  fill: var(--svg-box);
+  transition: var(--switch-theme-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media screen and (max-width: 425px) {
+  .default-container {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .default--desc {
+    font-size: 15px;
+  }
 }

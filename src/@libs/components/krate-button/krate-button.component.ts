@@ -1,14 +1,16 @@
 import { Component, Input } from '@angular/core';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'krate-button',
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './krate-button.component.html',
   styleUrl: './krate-button.component.scss'
 })
 export class KrateButtonComponent {
   @Input() label: string = 'Button';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() btnWidth: number = 300;
-  @Input() btnHeight: number = 50;
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
 }

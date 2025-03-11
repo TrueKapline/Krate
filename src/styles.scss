@@ -4,13 +4,43 @@
 }
 
 body {
-  background-color: var(--white);
+  background-color: var(--background);
+  color: var(--text);
+  transition:
+    background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
+    color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 :root {
-  --white: #F4F4F6;
+  --background: #F4F4F6;
   --accent-green: #2DCC8C;
-  --black-background: #222222;
-  --subtext: #8F8F8F;
-  --button-outline: #333333;
+  --card-background: #FFFFFF;
+  --text: #222222;
+  --heading: #222222;
+  --subtext: #646464;
+  --outline: #333333;
+  --diff-simple: #48AF38;
+  --diff-medium: #FFB74B;
+  --diff-hard: #FF3C38;
+
+  --svg-box: #F4F4F6;
+  --svg-background: #222222;
+
+  --switch-theme-duration: 0.3s;
+}
+
+.dark-theme {
+  --background: #2A2A2A;
+  --accent-green: #2DCC8C;
+  --card-background: #222222;
+  --text: #CCCCCC;
+  --heading: #F4F4F6;
+  --subtext: #646464;
+  --outline: #333333;
+  --diff-simple: #48AF38;
+  --diff-medium: #FFB74B;
+  --diff-hard: #FF3C38;
+
+  --svg-box: #222222;
+  --svg-background: #F4F4F6;
 }

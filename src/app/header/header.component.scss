@@ -21,7 +21,7 @@
 
   &--name {
     font-family: 'Rubik', serif;
-    color: var(--white);
+    color: var(--background);
     font-size: 20px;
   }
 }
@@ -38,11 +38,11 @@
     font-family: 'Rubik', serif;
     font-size: 18px;
     font-weight: 500;
-    color: var(--white);
+    color: var(--background);
     padding: 9px 20px;
     border-radius: 5px;
-    background-color: var(--black-background);
-    border: 2px solid var(--black-background);
+    background-color: var(--text);
+    border: 2px solid var(--text);
     outline: none;
     transition:
       border 300ms cubic-bezier(0.33, 1, 0.68, 1),
@@ -55,14 +55,14 @@
     }
 
     &:active {
-      color: var(--black-background);
+      color: var(--text);
       border: 2px solid var(--accent-green);
       background-color: var(--accent-green);
     }
   }
 
   &--button.active {
-    color: var(--black-background);
+    color: var(--text);
     border: 2px solid var(--accent-green);
     background-color: var(--accent-green);
   }
@@ -75,6 +75,6 @@
 
   &--img {
     border-radius: 5px;
-    border: 1px solid var(--button-outline);
+    border: 1px solid var(--outline);
   }
 }
