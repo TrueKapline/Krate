@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ThemeService } from '../../services/theme-service/theme-service.service';
+import { ThemeService } from '../../services/theme/theme.service';
 import { KrateButtonComponent } from '../krate-button/krate-button.component';
 
 @Component({

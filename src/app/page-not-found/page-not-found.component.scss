@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.not-found--wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found--msg {
+  font-size: 4rem;
+  font-family: 'Rubik', serif;
+  color: var(--text);
+}
