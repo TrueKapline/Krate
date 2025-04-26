@@ -1,5 +1,5 @@
 <section class="default--wrapper">
-  <div class="default-container">
+  <krate-card>
     <div class="default--logo">
       <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="58" height="58" rx="5" class="svg_bg"/>
@@ -14,7 +14,7 @@
 
     <div class="default--buttons">
       <krate-button
-        routerLink="/auth"
+        routerLink="/auth/registration"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
         label="Зарегистрироваться"
@@ -23,7 +23,7 @@
       ></krate-button>
 
       <krate-button
-        routerLink="/auth"
+        routerLink="/auth/login"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
         label="Войти"
@@ -42,5 +42,5 @@
 
       <theme-switcher></theme-switcher>
     </div>
-  </div>
+  </krate-card>
 </section>

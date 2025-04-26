@@ -1,6 +1,6 @@
-<button type="{{ type }}">
+<button [type]="type">
   <span
-    [ngClass]="['btn', 'btn__' + size]"
+    [ngClass]="['btn__' + size]"
     class="button_top"
   >{{ label }}</span>
 </button>

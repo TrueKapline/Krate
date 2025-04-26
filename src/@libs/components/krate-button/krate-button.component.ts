@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {NgClass} from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'krate-button',

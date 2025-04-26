@@ -1,0 +1,20 @@
+.card--default {
+  border: 3px solid var(--text);
+  background-color: var(--card-background);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  transition:
+    padding 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
+    border-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@media screen and (max-width: 425px) {
+  .card--default {
+    padding: 20px;
+  }
+}

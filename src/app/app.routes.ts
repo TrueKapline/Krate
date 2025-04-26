@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from '../@libs/components/login/login.component';
 import { RegistrationComponent } from '../@libs/components/registration/registration.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from '../@libs/components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { StudyPlanComponent } from './components/study-plan/study-plan.component';
@@ -16,9 +16,15 @@ export const routes: Routes = [
     component: EmptyLayoutComponent,
     children: [
       { path: '', component: DefaultComponent },
-      { path: 'auth', component: AuthComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'registration', component: RegistrationComponent },
+      {
+        path: 'auth',
+        component: AuthComponent,
+        children: [
+          { path: 'login', component: LoginComponent },
+          { path: 'registration', component: RegistrationComponent },
+          { path: '', redirectTo: 'login', pathMatch: 'full' },
+        ]
+      },
     ],
   },
   {
