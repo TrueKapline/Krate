@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div
+    class="input--container"
+    [class.invalid__container]="invalid"
+  >
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [ngClass]="['input__' + size]"
+      [class.invalid__input]="invalid"
+      [value]="value"
+      [disabled]="disabled"
+      (input)="onInput($event)"
+      class="input--field"
+    />
+  </div>
+</div>
+
+

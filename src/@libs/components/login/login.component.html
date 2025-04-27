@@ -1,1 +1,32 @@
-<p>login works!</p>
+<form class="login--form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2 class="auth--header">Авторизация</h2>
+
+  <krate-input
+    type="email"
+    placeholder="Ваш Email"
+    size="large"
+    formControlName="email"
+    class="auth--input"
+  ></krate-input>
+
+  <krate-input
+    type="password"
+    placeholder="Ваш пароль"
+    size="large"
+    formControlName="password"
+    [class.auth--input]="!(loginForm.invalid && isSubmitted)"
+  ></krate-input>
+
+  <p
+    class="auth--error"
+    [class.visible]="loginForm.invalid && isSubmitted"
+  >
+    Неверный логин или пароль
+  </p>
+
+  <krate-button
+    label="Войти"
+    type="submit"
+    size="large"
+  ></krate-button>
+</form>

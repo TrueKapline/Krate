@@ -1,1 +1,59 @@
-<p>registration works!</p>
+<form class="registration--form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <h2 class="registration--header">Регистрация</h2>
+
+  <krate-input
+    type="email"
+    placeholder="Ваш Email"
+    size="large"
+    formControlName="email"
+    [invalid]="email.invalid && isSubmitted"
+    [class.input__margin]="!(email.invalid && isSubmitted)"
+  ></krate-input>
+
+  <p
+    class="email--error"
+    [class.visible]="email.invalid && isSubmitted"
+  >
+    Неверный Email
+  </p>
+
+  <krate-input
+    type="password"
+    placeholder="Ваш пароль"
+    size="large"
+    formControlName="password"
+    [invalid]="password.invalid && isSubmitted"
+    [class.input__margin]="!(password.invalid && isSubmitted)"
+  ></krate-input>
+
+  <p
+    class="password--error"
+    [class.visible]="password.invalid && isSubmitted"
+  >
+    Пароль должен быть не менее 8 символов
+  </p>
+
+  <krate-input
+    type="password"
+    placeholder="Подтвердите пароль"
+    size="large"
+    formControlName="passwordConfirm"
+    [invalid]="registrationForm.hasError('passwordMismatch') && isSubmitted"
+    [class.input__margin]="!(registrationForm.hasError('passwordMismatch') && isSubmitted)"
+  ></krate-input>
+
+  <p
+    class="confirmation--error"
+    [class.visible]="registrationForm.hasError('passwordMismatch') && isSubmitted"
+  >
+    Пароли не совпадают
+  </p>
+
+  <krate-button
+    label="Зарегистрироваться"
+    type="submit"
+    size="large"
+  ></krate-button>
+</form>
+
+

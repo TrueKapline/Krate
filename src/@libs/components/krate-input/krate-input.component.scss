@@ -1,0 +1,74 @@
+.input--container {
+  background-color: var(--text);
+  border-radius: 5px;
+  transition: background-color 0.1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.input--field {
+  box-sizing: border-box;
+  height: 55px;
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  padding: 0 20px;
+  color: var(--text);
+  background-color: var(--card-background);
+  font-size: 17px;
+  font-weight: bold;
+  font-family: system-ui;
+  transition:
+    transform 0.1s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.1s cubic-bezier(0.33, 1, 0.68, 1),
+    width 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.input--field:focus {
+  outline: none;
+  transform: translateY(-3px);
+}
+
+.input--field::placeholder {
+  color: var(--subtext);
+  font-size: 17px;
+  font-weight: bold;
+  font-family: system-ui;
+  transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.input__small {
+  width: 250px;
+}
+
+.input__medium {
+  width: 300px;
+}
+
+.input__large {
+  width: 350px;
+}
+
+.invalid__input {
+  border-color: var(--error);
+}
+
+.invalid__container {
+  background-color: var(--error);
+}
+
+@media screen and (max-width: 425px) {
+  .input__large {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .input--field,
+  .input--field::placeholder {
+    font-size: 15px;
+  }
+
+  .input__medium,
+  .input__large {
+    width: 250px;
+  }
+}

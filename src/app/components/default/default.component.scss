@@ -48,8 +48,15 @@
   transition: var(--switch-theme-duration) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@media screen and (max-width: 425px) {
+  .default--desc {
+    max-width: 300px;
+  }
+}
+
 @media screen and (max-width: 375px) {
   .default--desc {
+    max-width: 250px;
     font-size: 15px;
   }
 }

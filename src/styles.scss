@@ -6,6 +6,7 @@
 body {
   background-color: var(--background);
   color: var(--text);
+  font-family: 'Rubik', serif;
   transition:
     background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
     color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
@@ -19,6 +20,8 @@ body {
   --heading: #222222;
   --subtext: #646464;
   --outline: #333333;
+  --error: #F25F5C;
+
   --diff-simple: #48AF38;
   --diff-medium: #FFB74B;
   --diff-hard: #FF3C38;
@@ -43,6 +46,8 @@ body {
   --heading: #F4F4F6;
   --subtext: #646464;
   --outline: #333333;
+  --error: #F25F5C;
+
   --diff-simple: #48AF38;
   --diff-medium: #FFB74B;
   --diff-hard: #FF3C38;
