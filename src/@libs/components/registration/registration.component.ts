@@ -11,6 +11,7 @@ import {
   Validators
 } from '@angular/forms';
 import { EMAIL_REGEX } from './model/email-regex.model';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -18,6 +19,7 @@ import { EMAIL_REGEX } from './model/email-regex.model';
       KrateButtonComponent,
       KrateInputComponent,
       ReactiveFormsModule,
+
     ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
@@ -25,6 +27,9 @@ import { EMAIL_REGEX } from './model/email-regex.model';
 export class RegistrationComponent {
   protected isSubmitted = false;
   private emailRegex: RegExp = EMAIL_REGEX;
+
+  constructor(private authService: AuthService) {
+  }
 
   passwordMatchValidator: ValidatorFn = (
     control: AbstractControl
@@ -68,5 +73,13 @@ export class RegistrationComponent {
 
   onSubmit() {
     this.isSubmitted = true;
+    this.authService.ping().subscribe({
+      next: (response) => {
+        console.log('Сервер доступен:', response);
+      },
+      error: (err) => {
+        console.error('Ошибка:', err);
+      }
+    })
   }
 }
