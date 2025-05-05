@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000' // URL вашего Node.js сервера
+  apiUrl: 'http://88.218.67.130:3000'
 };

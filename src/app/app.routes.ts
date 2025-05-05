@@ -9,11 +9,14 @@ import { DefaultComponent } from './components/default/default.component';
 import { EmptyLayoutComponent } from '../@libs/layouts/empty-layout/empty-layout.component';
 import { MainLayoutComponent } from '../@libs/layouts/main-layout/main-layout.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { AuthGuard } from '../@libs/services/auth/model/auth.guard';
+import { GuestGuard } from '../@libs/services/auth/model/guest.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: EmptyLayoutComponent,
+    canActivate: [GuestGuard],
     children: [
       { path: '', component: DefaultComponent },
       {
@@ -30,6 +33,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'courses', component: CoursesComponent },

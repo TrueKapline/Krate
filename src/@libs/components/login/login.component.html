@@ -6,22 +6,31 @@
     placeholder="Ваш Email"
     size="large"
     formControlName="email"
-    class="auth--input"
+    [invalid]="email.invalid && isSubmitted"
+    [class.input__margin]="!(email.invalid && isSubmitted)"
   ></krate-input>
+
+  <p
+    class="email--error"
+    [class.visible]="email.invalid && isSubmitted"
+  >
+    Неверный формат Email
+  </p>
 
   <krate-input
     type="password"
     placeholder="Ваш пароль"
     size="large"
     formControlName="password"
-    [class.auth--input]="!(loginForm.invalid && isSubmitted)"
+    [invalid]="password.invalid && isSubmitted"
+    [class.input__margin]="!(password.invalid && isSubmitted)"
   ></krate-input>
 
   <p
-    class="auth--error"
-    [class.visible]="loginForm.invalid && isSubmitted"
+    class="password--error"
+    [class.visible]="password.invalid && isSubmitted"
   >
-    Неверный логин или пароль
+    Пароль должен быть не менее 8 символов
   </p>
 
   <krate-button
@@ -29,4 +38,11 @@
     type="submit"
     size="large"
   ></krate-button>
+
+  <p
+    class="auth--error"
+    [class.visible]="isInputWrong"
+  >
+    Неверный логин или пароль
+  </p>
 </form>

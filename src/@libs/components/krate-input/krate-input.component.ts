@@ -18,7 +18,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class KrateInputComponent implements ControlValueAccessor {
-  @Input() type: 'password' | 'email' = 'email';
+  @Input() type: 'password' | 'email' | 'text' = 'email';
   @Input() placeholder: string = 'Enter your email';
   @Input() size: 'small' | 'medium' | 'large' = 'large';
   @Input() invalid: boolean = false;

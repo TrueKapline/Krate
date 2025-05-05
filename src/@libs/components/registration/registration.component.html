@@ -6,15 +6,38 @@
     placeholder="Ваш Email"
     size="large"
     formControlName="email"
-    [invalid]="email.invalid && isSubmitted"
-    [class.input__margin]="!(email.invalid && isSubmitted)"
+    [invalid]="(email.invalid || isEmailTaken) && isSubmitted"
+    [class.input__margin]="!((email.invalid || isEmailTaken) && isSubmitted)"
   ></krate-input>
 
   <p
     class="email--error"
     [class.visible]="email.invalid && isSubmitted"
   >
-    Неверный Email
+    Неверный формат почты
+  </p>
+
+  <p
+    class="email--error_taken"
+    [class.visible]="isEmailTaken"
+  >
+    Эта почта уже занята
+  </p>
+
+  <krate-input
+    type="text"
+    placeholder="Ваш никнейм"
+    size="large"
+    formControlName="username"
+    [invalid]="username.invalid && isSubmitted"
+    [class.input__margin]="!(username.invalid && isSubmitted)"
+  ></krate-input>
+
+  <p
+    class="name--error"
+    [class.visible]="username.invalid && isSubmitted"
+  >
+    Никнейм должен быть написан на латинице, начинаться с буквы, а его длина от 2 до 20 символов
   </p>
 
   <krate-input
