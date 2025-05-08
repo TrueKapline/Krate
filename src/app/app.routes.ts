@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from '../@libs/components/login/login.component';
 import { RegistrationComponent } from '../@libs/components/registration/registration.component';
 import { PageNotFoundComponent } from '../@libs/components/page-not-found/page-not-found.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from '../@libs/components/profile/profile.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { StudyPlanComponent } from './components/study-plan/study-plan.component';
 import { DefaultComponent } from './components/default/default.component';

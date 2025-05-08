@@ -1,6 +1,10 @@
 .header-wrapper {
-  height: 40px;
-  width: calc(100% - 60px);
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  height: 70px;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   background-color: var(--header-background);
   padding: 15px 30px;
@@ -20,6 +24,7 @@
   }
 
   &--name {
+    font-family: 'Rubik', serif;
     color: var(--header-text);
     font-size: 22px;
     letter-spacing: 1px;
@@ -35,9 +40,9 @@
   user-select: none;
 
   &--button {
-    font-family: 'Rubik', serif;
+    font-family: 'Commissioner', sans-serif;
+    font-weight: 600;
     font-size: 18px;
-    font-weight: 500;
     color: var(--header-text);
     padding: 9px 20px;
     border-radius: 5px;
@@ -68,13 +73,3 @@
   }
 }
 
-.header-avatar {
-  display: flex;
-  justify-self: flex-end;
-  flex-shrink: 0;
-
-  &--img {
-    border-radius: 5px;
-    border: 1px solid var(--outline);
-  }
-}

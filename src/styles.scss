@@ -3,14 +3,12 @@
   padding: 0;
 }
 
-body {
-  background-color: var(--background);
-  color: var(--text);
-  font-family: 'Rubik', serif;
-  transition:
-    background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
-    color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
-}
+html, body {
+   color: var(--text);
+   font-family: "Commissioner", sans-serif;
+   font-weight: 400;
+   transition: color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
+ }
 
 :root {
   --background: #F4F4F6;
@@ -28,6 +26,8 @@ body {
 
   --svg-box: #F4F4F6;
   --svg-background: #222222;
+
+  --loader-color: #ececec;
 
   --header-background: #222222;
   --header-accent: #2DCC8C;
@@ -54,4 +54,6 @@ body {
 
   --svg-box: #222222;
   --svg-background: #F4F4F6;
+
+  --loader-color: #333333;
 }

@@ -1,0 +1,45 @@
+<div class="default--wrapper">
+  @if (username && email) {
+    <krate-card>
+      <div class="card--wrapper">
+        <h1 class="profile--username">{{ username }}</h1>
+        <p class="profile--email">Email: {{ email }}</p>
+
+        <theme-switcher class="theme--switcher"></theme-switcher>
+
+        <krate-button
+          label="Выйти"
+          type="button"
+          size="large"
+          (click)="logout()"
+        ></krate-button>
+      </div>
+    </krate-card>
+  } @else {
+    <krate-card>
+      <div class="card--wrapper">
+        <ngx-skeleton-loader
+          [theme]="{ height: '40px', width: '200px', 'background-color': 'var(--loader-color)'}"
+          animation="pulse"
+          class="loader--theme__dark"
+        ></ngx-skeleton-loader>
+
+        <ngx-skeleton-loader
+          [theme]="{ height: '20px', width: '200px', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+
+        <ngx-skeleton-loader
+          [theme]="{ height: '55px', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+          class="loader__btn"
+        ></ngx-skeleton-loader>
+
+        <ngx-skeleton-loader
+          [theme]="{ height: '55px', margin: '0', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+    </krate-card>
+  }
+</div>

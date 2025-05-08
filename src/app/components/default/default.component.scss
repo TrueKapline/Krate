@@ -20,6 +20,7 @@
 }
 
 .default--name {
+  font-family: 'Rubik', serif;
   font-size: 38px;
   color: var(--heading);
   transition: color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),

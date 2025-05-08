@@ -1,0 +1,45 @@
+.default--wrapper {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  transition: color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.card--wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile--username {
+  margin-bottom: 4px;
+}
+
+.profile--email {
+  color: var(--subtext);
+  margin-bottom: 30px;
+}
+
+.theme--switcher {
+  margin-bottom: 10px;
+}
+
+.loader__btn {
+  width: 350px;
+  height: 55px;
+  margin-bottom: 10px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@media screen and (max-width: 425px) {
+  .loader__btn {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .loader__btn {
+    width: 250px;
+  }
+}

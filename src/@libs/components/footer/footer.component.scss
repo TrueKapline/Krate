@@ -1,18 +1,17 @@
 .footer-wrapper {
-  position: absolute;
-  height: calc(70px - 21px * 2);
-  width: 100%;
+  box-sizing: border-box;
+  height: 70px;
+  z-index: 1000;
   background-color: var(--header-background);
-  left: 0;
-  bottom: 0;
   padding: 21px 0;
 }
 
 .footer-copyright {
   display: flex;
-  color: var(--header-text);
   align-items: center;
   gap: 6px;
+  color: var(--header-text);
+  font-weight: 500;
   max-width: 60vw;
   margin: 0 auto;
 }

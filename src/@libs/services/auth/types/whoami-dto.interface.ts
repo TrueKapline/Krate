@@ -1,4 +1,4 @@
-export interface WhoAmIDto {
+export interface WhoAmIDTO {
   email: string;
   role: string;
 }

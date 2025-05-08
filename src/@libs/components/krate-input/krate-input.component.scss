@@ -12,9 +12,9 @@
   padding: 0 20px;
   color: var(--text);
   background-color: var(--card-background);
-  font-size: 17px;
-  font-weight: bold;
-  font-family: system-ui;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Commissioner', sans-serif;
   transition:
     transform 0.1s cubic-bezier(0.33, 1, 0.68, 1),
     border-color 0.1s cubic-bezier(0.33, 1, 0.68, 1),
@@ -29,10 +29,19 @@
 
 .input--field::placeholder {
   color: var(--subtext);
-  font-size: 17px;
-  font-weight: bold;
-  font-family: system-ui;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Commissioner', sans-serif;
   transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 1000px var(--card-background) inset;
+  -webkit-text-fill-color: #ffffff;
+  font-family: 'Commissioner', sans-serif;
 }
 
 .input__small {

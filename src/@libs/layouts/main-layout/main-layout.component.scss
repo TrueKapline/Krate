@@ -1,0 +1,10 @@
+.content {
+  box-sizing: border-box;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: calc(70px + 30px);
+  padding-bottom: 30px;
+  background-color: var(--background);
+}
