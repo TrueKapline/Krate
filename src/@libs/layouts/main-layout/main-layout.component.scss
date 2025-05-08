@@ -7,4 +7,5 @@
   padding-top: calc(70px + 30px);
   padding-bottom: 30px;
   background-color: var(--background);
+  transition: background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
 }

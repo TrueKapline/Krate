@@ -1,7 +1,7 @@
 .input--container {
   background-color: var(--text);
   border-radius: 5px;
-  transition: background-color 0.1s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .input--field {
