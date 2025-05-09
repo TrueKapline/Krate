@@ -30,6 +30,18 @@
   margin-bottom: 23px;
 }
 
+.btn--submit {
+  margin-bottom: 6px;
+}
+
+.suggest--login {
+  text-align: center;
+}
+
+.text--link {
+  color: var(--link);
+}
+
 @media screen and (max-width: 425px) {
   .email--error,
   .password--error,

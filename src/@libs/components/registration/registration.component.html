@@ -5,6 +5,7 @@
     type="email"
     placeholder="Ваш Email"
     size="large"
+    autocomplete="email"
     formControlName="email"
     [invalid]="(email.invalid || isEmailTaken) && isSubmitted"
     [class.input__margin]="!((email.invalid || isEmailTaken) && isSubmitted)"
@@ -28,6 +29,7 @@
     type="text"
     placeholder="Ваш никнейм"
     size="large"
+    autocomplete="nickname"
     formControlName="username"
     [invalid]="username.invalid && isSubmitted"
     [class.input__margin]="!(username.invalid && isSubmitted)"
@@ -44,6 +46,7 @@
     type="password"
     placeholder="Ваш пароль"
     size="large"
+    autocomplete="new-password"
     formControlName="password"
     [invalid]="password.invalid && isSubmitted"
     [class.input__margin]="!(password.invalid && isSubmitted)"
@@ -60,6 +63,7 @@
     type="password"
     placeholder="Подтвердите пароль"
     size="large"
+    autocomplete="new-password"
     formControlName="passwordConfirm"
     [invalid]="registrationForm.hasError('passwordMismatch') && isSubmitted"
     [class.input__margin]="!(registrationForm.hasError('passwordMismatch') && isSubmitted)"
@@ -76,7 +80,15 @@
     label="Зарегистрироваться"
     type="submit"
     size="large"
+    class="btn--submit"
   ></krate-button>
+
+  <p class="suggest--login">
+    Уже есть аккаунт?
+    <a class="text--link" routerLink="/auth/login" routerLinkActive="active" ariaCurrentWhenActive="page">
+      Войти
+    </a>
+  </p>
 </form>
 
 

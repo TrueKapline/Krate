@@ -1,6 +1,13 @@
 <header class="header-wrapper">
-
   <section class="header-logo">
+    <button type="button" class="drawer-toggle" (click)="toggleDrawer()">
+      <svg width="22" height="22" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="drawer-toggle--icon" d="M15.0002 23.0005C13.344 23.0005 12 21.6565 12 20.0002C12 18.343 13.344 17 15.0002 17H65.0008C66.6571 17 68.0011 18.343 68.0011 20.0002C68.0011 21.6565 66.6571 23.0005 65.0008 23.0005H15.0002Z" />
+        <path class="drawer-toggle--icon" d="M15.0012 43.0007C13.343 43.0007 12 41.6576 12 39.9995C12 38.3432 13.343 36.9993 15.0002 36.9993H64.9999C66.6561 36.9993 67.9992 38.3432 67.9992 39.9995C67.9992 41.6567 66.6561 42.9997 64.9999 42.9997L15.0012 43.0007Z" />
+        <path class="drawer-toggle--icon" d="M15.0012 63C13.343 63 12 61.656 12 59.9988C12 58.3425 13.343 56.9995 15.0012 56.9995H64.9999C66.6571 56.9995 68.0011 58.3425 68.0011 59.9988C68.0011 61.656 66.6571 63 64.9999 63H15.0012Z" />
+      </svg>
+    </button>
+
     <a routerLink="/" routerLinkActive="active" class="header-logo--link">
       <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16.3352 18.3094L2.65213 10.6868C1.60247 10.287 1.25675 11.2283 1.2151 11.749C1.19427 16.1851 1.16511 25.3696 1.2151 26.6192C1.26508 27.8688 2.2356 28.556 2.71461 28.7435C6.62999 30.9095 14.8357 35.4788 16.3352 36.4285C17.8347 37.3782 18.0846 36.3661 18.0222 35.7413V20.7461C18.0222 19.4965 16.8975 18.6009 16.3352 18.3094Z" fill="#F4F4F6"/>
@@ -28,7 +35,7 @@
     >Учебный план</button>
   </nav>
 
-  <section class="header-avatar">
+  <section class="header-profile">
     <button
       type="button"
       class="header-nav--button"
@@ -38,3 +45,36 @@
     >Профиль</button>
   </section>
 </header>
+
+<krate-drawer
+  [isOpen]="isDrawerOpen"
+  [width]="300"
+  [position]="'left'"
+  (drawerClosed)="closeDrawer()"
+>
+  <div class="buttons">
+    <button
+      type="button"
+      class="header-nav--button__mobile"
+      routerLink="/courses"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >Курсы</button>
+
+    <button
+      type="button"
+      class="header-nav--button__mobile"
+      routerLink="/study-plan"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >Учебный план</button>
+
+    <button
+      type="button"
+      class="header-nav--button__mobile"
+      routerLink="/profile"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >Профиль</button>
+  </div>
+</krate-drawer>

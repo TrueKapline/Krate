@@ -40,12 +40,12 @@
 }
 
 .svg_bg {
-  fill: var(--svg-background);
+  fill: var(--logo-background);
   transition: var(--switch-theme-duration) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .svg_box {
-  fill: var(--svg-box);
+  fill: var(--logo-box);
   transition: var(--switch-theme-duration) cubic-bezier(0.4, 0, 0.2, 1);
 }
 

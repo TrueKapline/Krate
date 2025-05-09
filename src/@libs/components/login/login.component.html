@@ -5,6 +5,7 @@
     type="email"
     placeholder="Ваш Email"
     size="large"
+    autocomplete="email"
     formControlName="email"
     [invalid]="email.invalid && isSubmitted"
     [class.input__margin]="!(email.invalid && isSubmitted)"
@@ -21,6 +22,7 @@
     type="password"
     placeholder="Ваш пароль"
     size="large"
+    autocomplete="current-password"
     formControlName="password"
     [invalid]="password.invalid && isSubmitted"
     [class.input__margin]="!(password.invalid && isSubmitted)"
@@ -44,5 +46,12 @@
     [class.visible]="isInputWrong"
   >
     Неверный логин или пароль
+  </p>
+
+  <p class="suggest--register">
+    Нет аккаунта?
+    <a class="text--link" routerLink="/auth/registration" routerLinkActive="active" ariaCurrentWhenActive="page">
+      Зарегистрироваться
+    </a>
   </p>
 </form>

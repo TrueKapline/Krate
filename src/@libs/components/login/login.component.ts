@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import { EMAIL_REGEX } from '../../model/email-regex.model';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,8 @@ import { Router } from '@angular/router';
     KrateButtonComponent,
     KrateInputComponent,
     ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

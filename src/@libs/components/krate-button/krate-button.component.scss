@@ -6,7 +6,6 @@ button {
   background-color: var(--text);
   font-family: 'Commissioner', sans-serif;
   font-weight: 600;
-  outline: none;
   transition:
     font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1),
     background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1);
