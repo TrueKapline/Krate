@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CardComponent } from '../../card/card.component';
+import { Component, OnInit } from '@angular/core';
+import { CardComponent } from '../../krate-ui/card/card.component';
 import { KrateButtonComponent } from '../../krate-ui/krate-button/krate-button.component';
 import { ThemeSwitcherComponent } from '../../krate-ui/theme-switcher/theme-switcher.component';
 import { AuthService } from '../../../services/auth/auth.service';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,14 +12,17 @@ import { Router } from '@angular/router';
     CardComponent,
     KrateButtonComponent,
     ThemeSwitcherComponent,
-    NgxSkeletonLoaderComponent
+    NgxSkeletonLoaderComponent,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
-  @Input() username?: string;
-  @Input() email?: string;
+  username?: string;
+  email?: string;
+  role?: 'user' | 'admin';
 
   theme = {
     height: '55px',
@@ -37,12 +40,13 @@ export class ProfileComponent implements OnInit {
       next: (response) => {
         this.username = response.username;
         this.email = response.email;
+        this.role = response.role;
       }
     })
   }
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 }

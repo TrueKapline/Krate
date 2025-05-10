@@ -12,8 +12,8 @@ export class GuestGuard implements CanActivate {
 
   canActivate() {
     return this.auth.whoAmI().pipe(
-      map(isAuth => {
-        if (isAuth) {
+      map(user => {
+        if (user) {
           return this.router.createUrlTree(['/courses']);
         }
         return true;

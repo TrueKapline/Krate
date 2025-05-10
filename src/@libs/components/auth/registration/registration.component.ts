@@ -103,7 +103,7 @@ export class RegistrationComponent {
       this.authService.register(email!, password!, username!).subscribe({
         next: (response) => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/courses']);
+          this.router.navigate(['/courses']).then();
         },
         error: (validationErrors: ValidationErrors[]) => {
           this.isEmailTaken = true;

@@ -1,0 +1,71 @@
+.textarea--container {
+  background-color: var(--text);
+  border-radius: 5px;
+  transition:
+    background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
+    width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.textarea--field {
+  box-sizing: border-box;
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: var(--text);
+  resize: none;
+  background-color: var(--card-background);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Commissioner', sans-serif;
+  transition:
+    transform 0.1s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.1s cubic-bezier(0.33, 1, 0.68, 1),
+    width 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.textarea--field:focus {
+  outline: none;
+  transform: translateY(-3px);
+}
+
+.textarea--field::placeholder {
+  color: var(--subtext);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Commissioner', sans-serif;
+  transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.textarea__small {
+  width: 250px;
+  height: 200px;
+}
+
+.textarea__medium {
+  width: 300px;
+  height: 200px;
+}
+
+.textarea__large {
+  width: 350px;
+  height: 200px;
+}
+
+@media screen and (max-width: 425px) {
+  .textarea__large {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .textarea--field,
+  .textarea--field::placeholder {
+    font-size: 15px;
+  }
+
+  .textarea__medium,
+  .textarea__large {
+    width: 250px;
+  }
+}

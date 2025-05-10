@@ -5,7 +5,18 @@
         <h1 class="profile--username">{{ username }}</h1>
         <p class="profile--email">Email: {{ email }}</p>
 
-        <theme-switcher class="theme--switcher"></theme-switcher>
+        <theme-switcher class="btn__margin"></theme-switcher>
+
+        @if (role === 'admin') {
+          <krate-button
+            label="Создать новый курс"
+            type="button"
+            size="large"
+            routerLink="/edit/new-course"
+            routerLinkActive="active"
+            class="btn__margin"
+          ></krate-button>
+        }
 
         <krate-button
           label="Выйти"

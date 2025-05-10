@@ -72,7 +72,7 @@ export class LoginComponent {
       this.authService.login(email!, password!).subscribe({
         next: (response) => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/courses']);
+          this.router.navigate(['/courses']).then();
         },
         error: (validationErrors: ValidationErrors[]) => {
           this.isInputWrong = true;

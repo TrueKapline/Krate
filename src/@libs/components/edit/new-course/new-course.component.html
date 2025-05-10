@@ -1,0 +1,36 @@
+<krate-card>
+  <form class="new-course--form" [formGroup]="newCourseForm" (ngSubmit)="onSubmit()">
+    <h1 class="new-course--heading">Создание нового курса</h1>
+    <label class="field--desc">Название курса:<strong class="required">*</strong></label>
+    <krate-input
+      type="text"
+      placeholder="Введите название"
+      size="large"
+      formControlName="name"
+      [invalid]="name.invalid && isSubmitted"
+      [class.input--field]="!(name.invalid && isSubmitted)"
+    ></krate-input>
+
+    <p
+      class="name--error"
+      [class.visible]="name.invalid && isSubmitted"
+    >
+      Название курса должно быть не менее двух символов
+    </p>
+
+    <label for="desc" class="field--desc">Описание курса:</label>
+    <krate-textarea
+      placeholder="Введите описание"
+      size="large"
+      id="desc"
+      formControlName="description"
+      class="input--field"
+    ></krate-textarea>
+
+    <krate-button
+      label="Создать курс"
+      type="submit"
+      size="large"
+    ></krate-button>
+  </form>
+</krate-card>

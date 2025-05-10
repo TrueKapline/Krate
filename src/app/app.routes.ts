@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from '../@libs/components/login/login.component';
-import { RegistrationComponent } from '../@libs/components/registration/registration.component';
-import { PageNotFoundComponent } from '../@libs/components/page-not-found/page-not-found.component';
-import { ProfileComponent } from '../@libs/components/profile/profile.component';
+import { LoginComponent } from '../@libs/components/auth/login/login.component';
+import { RegistrationComponent } from '../@libs/components/auth/registration/registration.component';
+import { PageNotFoundComponent } from '../@libs/components/navigation/page-not-found/page-not-found.component';
+import { ProfileComponent } from '../@libs/components/auth/profile/profile.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { StudyPlanComponent } from './components/study-plan/study-plan.component';
 import { DefaultComponent } from './components/default/default.component';
@@ -11,6 +11,10 @@ import { MainLayoutComponent } from '../@libs/layouts/main-layout/main-layout.co
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from '../@libs/services/auth/model/auth.guard';
 import { GuestGuard } from '../@libs/services/auth/model/guest.guard';
+import { NewCourseComponent } from '../@libs/components/edit/new-course/new-course.component';
+import { AdminGuard } from '../@libs/services/auth/model/admin.guard';
+import { EditCourseComponent } from '../@libs/components/edit/edit-course/edit-course.component';
+import { EditComponent } from './components/edit/edit.component';
 
 export const routes: Routes = [
   {
@@ -38,6 +42,16 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'courses', component: CoursesComponent },
       { path: 'study-plan', component: StudyPlanComponent },
+      {
+        path: 'edit',
+        component: EditComponent,
+        canActivate: [AdminGuard],
+        children: [
+          { path: 'new-course', component: NewCourseComponent },
+          { path: 'course', component: EditCourseComponent },
+        ]
+      },
+      { path: '', redirectTo: 'courses', pathMatch: 'full' },
     ],
   },
   { path: '**', component: PageNotFoundComponent },

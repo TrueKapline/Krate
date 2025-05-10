@@ -4,7 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 import { map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router
@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   canActivate() {
     return this.auth.whoAmI().pipe(
       map(user => {
-        if (!user) {
+        if (!user || user.role !== 'admin') {
           return this.router.createUrlTree(['/']);
         }
         return true;

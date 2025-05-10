@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div
+    class="textarea--container"
+    [ngClass]="['textarea__' + size]"
+  >
+    <textarea
+      [placeholder]="placeholder"
+      [ngClass]="['textarea__' + size]"
+      [id]="id"
+      (input)="onInput($event)"
+      class="textarea--field"
+    ></textarea>
+  </div>
+</div>

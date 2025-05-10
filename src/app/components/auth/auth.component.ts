@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../../../@libs/components/card/card.component';
+import { CardComponent } from '../../../@libs/components/krate-ui/card/card.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({

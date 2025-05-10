@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { KrateButtonComponent } from '../../../@libs/components/krate-ui/krate-button/krate-button.component';
-import { CardComponent } from '../../../@libs/components/card/card.component';
+import { CardComponent } from '../../../@libs/components/krate-ui/card/card.component';
 
 @Component({
   selector: 'app-default',
