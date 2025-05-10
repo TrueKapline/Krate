@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardComponent } from '../card/card.component';
-import { KrateButtonComponent } from '../krate-button/krate-button.component';
-import { ThemeSwitcherComponent } from '../theme-switcher/theme-switcher.component';
-import { AuthService } from '../../services/auth/auth.service';
+import { CardComponent } from '../../card/card.component';
+import { KrateButtonComponent } from '../../krate-ui/krate-button/krate-button.component';
+import { ThemeSwitcherComponent } from '../../krate-ui/theme-switcher/theme-switcher.component';
+import { AuthService } from '../../../services/auth/auth.service';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 import { Router } from '@angular/router';
 

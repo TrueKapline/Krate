@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { KrateButtonComponent } from "../krate-button/krate-button.component";
-import { KrateInputComponent } from '../krate-input/krate-input.component';
+import { KrateButtonComponent } from "../../krate-ui/krate-button/krate-button.component";
+import { KrateInputComponent } from '../../krate-ui/krate-input/krate-input.component';
 import {
   AbstractControl,
   FormControl,
@@ -10,10 +10,10 @@ import {
   ValidatorFn,
   Validators
 } from '@angular/forms';
-import { EMAIL_REGEX } from '../../model/email-regex.model';
-import { AuthService } from '../../services/auth/auth.service';
+import { EMAIL_REGEX } from '../../../model/email-regex.model';
+import { AuthService } from '../../../services/auth/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { NAME_REGEX } from '../../model/name-regex.model';
+import { NAME_REGEX } from '../../../model/name-regex.model';
 
 @Component({
   selector: 'app-registration',

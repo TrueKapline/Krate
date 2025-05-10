@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { KrateButtonComponent } from '../krate-button/krate-button.component';
+import { KrateButtonComponent } from '../../krate-ui/krate-button/krate-button.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
