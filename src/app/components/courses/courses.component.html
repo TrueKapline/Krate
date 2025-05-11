@@ -1,1 +1,18 @@
-<p>courses works!</p>
+<div class="courses-grid">
+  @if (courses.length !== 0) {
+    @for (item of courses; track item.name) {
+      <krate-course
+        [name]="item.name"
+        [description]="item.description"
+        [projects]="item.projects"
+        [isPending]="false"
+      ></krate-course>
+    }
+  } @else {
+    @for (item of [1,2,3,4,5,6]; track item) {
+      <krate-course
+        [isPending]="true"
+      ></krate-course>
+    }
+  }
+</div>

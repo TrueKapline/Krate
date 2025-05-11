@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environment/environment';
-import { catchError, of, throwError } from 'rxjs';
+import { catchError, of, tap, throwError } from 'rxjs';
 import { AuthDTO } from './types/auth-dto.interface';
 import { WhoAmIDTO } from './types/whoami-dto.interface';
 import { ProfileDTO } from './types/profile-dto.interface';
@@ -11,8 +11,15 @@ import { ProfileDTO } from './types/profile-dto.interface';
 })
 export class AuthService {
   private readonly backend = environment.apiUrl;
+  private _role = signal<string | null>(null);
+  public role: Signal<string | null> = this._role.asReadonly();
 
   constructor(private http: HttpClient) { }
+
+  clearSession() {
+    this._role.set(null);
+    sessionStorage.removeItem('role');
+  }
 
   get token(): string | null {
     return localStorage.getItem('token');
@@ -50,6 +57,10 @@ export class AuthService {
       .get<WhoAmIDTO>(`${this.backend}/whoAmI`, {
         headers: { Authorization: token }
       }).pipe(
+        tap((user) => {
+          this._role.set(user.role);
+          sessionStorage.setItem('role', user.role)
+        }),
         catchError(() => of(null))
       );
   }
