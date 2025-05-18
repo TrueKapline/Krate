@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
@@ -9,24 +9,21 @@ import { GetCoursesDTO } from './types/get-courses-dto.interface';
   providedIn: 'root'
 })
 export class CourseService {
-  private readonly backend = environment.apiUrl;
+  private http = inject(HttpClient);
+  private authService = inject(AuthService);
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) { }
+  private readonly backend = environment.apiUrl;
+  private readonly token = this.authService.token;
 
   getCourses() {
-    const token = this.authService.token;
-
-    if (!token) {
+    if (!this.token) {
       return throwError(() => new Error('Нет токена'));
     }
 
     return this.http
-      .get<GetCoursesDTO[]>(`${this.backend}/courses`,
-        { headers: { 'Authorization': token } }
-      ).pipe(
+      .get<GetCoursesDTO[]>(`${this.backend}/courses`, {
+        headers: { 'Authorization': this.token }
+      }).pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError(() => err.error.message);
         })

@@ -1,0 +1,131 @@
+.edit__name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 25px;
+}
+
+.edit__description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 5px;
+  max-width: 1300px;
+}
+
+.course-name {
+  font-size: 48px;
+  box-sizing: content-box;
+  font-weight: 800;
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 23px;
+  }
+
+  &__edit {
+    fill: var(--subtext);
+  }
+}
+
+.course-description {
+  font-size: 32px;
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 23px;
+  }
+
+  &__edit {
+    fill: var(--subtext);
+  }
+}
+
+.projects-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projects-heading {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.field--desc {
+  text-align: left;
+  margin-bottom: 4px;
+  cursor: text;
+  width: 350px;
+  transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.input--field {
+  margin-bottom: 15px;
+}
+
+.name--error {
+  text-align: left;
+  color: var(--error);
+  display: none;
+  font-size: 15px;
+  max-width: 350px;
+  margin: 2px 0 12px;
+  transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.visible {
+  display: block;
+}
+
+.difficulty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 425px) {
+  .name--error,
+  .field--desc {
+    max-width: 300px;
+  }
+
+  .difficulty {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .name--error,
+  .field--desc {
+    max-width: 250px;
+  }
+
+  .difficulty {
+    width: 250px;
+  }
+}

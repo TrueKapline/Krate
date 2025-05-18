@@ -11,7 +11,6 @@ import { MainLayoutComponent } from '../@libs/layouts/main-layout/main-layout.co
 import { AuthComponent } from './components/auth/auth.component';
 import { AuthGuard } from '../@libs/services/auth/model/auth.guard';
 import { GuestGuard } from '../@libs/services/auth/model/guest.guard';
-import { NewCourseComponent } from '../@libs/components/edit/new-course/new-course.component';
 import { AdminGuard } from '../@libs/services/auth/model/admin.guard';
 import { EditCourseComponent } from '../@libs/components/edit/edit-course/edit-course.component';
 import { EditComponent } from './components/edit/edit.component';
@@ -47,8 +46,7 @@ export const routes: Routes = [
         component: EditComponent,
         canActivate: [AdminGuard],
         children: [
-          { path: 'new-course', component: NewCourseComponent },
-          { path: 'course', component: EditCourseComponent },
+          { path: 'course/:courseName', component: EditCourseComponent },
         ]
       },
       { path: '', redirectTo: 'courses', pathMatch: 'full' },
