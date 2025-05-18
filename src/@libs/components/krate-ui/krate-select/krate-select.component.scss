@@ -1,0 +1,39 @@
+.select {
+  box-sizing: border-box;
+  height: 55px;
+  width: 200px;
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  padding: 0 40px 0 20px;
+  color: var(--text);
+  background-color: var(--card-background);
+  font-size: 16px;
+  font-weight: 600;
+  appearance: none;
+  background-image: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.300049 4.66877C0.300049 4.27877 0.450049 3.90377 0.735049 3.60377C1.32005 3.01877 2.28005 3.01877 2.86505 3.60377L7.42505 8.14877L11.985 3.58877C12.57 3.00377 13.53 3.00377 14.115 3.58877C14.7 4.17377 14.7 5.13377 14.115 5.71877L8.49005 11.3438C8.20505 11.6288 7.83005 11.7788 7.42505 11.7788C7.02005 11.7788 6.64505 11.6138 6.36005 11.3438L0.735049 5.73377C0.450049 5.43377 0.300049 5.04377 0.300049 4.66877Z" fill="currentColor"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  font-family: 'Commissioner', sans-serif;
+  cursor: pointer;
+  transition:
+    background-color var(--switch-theme-duration) cubic-bezier(0.33, 1, 0.68, 1),
+    transform 0.1s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.1s cubic-bezier(0.33, 1, 0.68, 1),
+    width 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.select:focus {
+  outline: none;
+}
+
+.option {
+  font-family: 'Commissioner', sans-serif;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 425px) {
+  .select {
+    width: 150px;
+  }
+}

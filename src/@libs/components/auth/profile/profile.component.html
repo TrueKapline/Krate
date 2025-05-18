@@ -5,16 +5,18 @@
         <h1 class="profile--username">{{ username }}</h1>
         <p class="profile--email">Email: {{ email }}</p>
 
-        <theme-switcher class="btn__margin"></theme-switcher>
+        <div class="theme">
+          <p class="theme-text">Текущая тема: </p>
+          <theme-switcher></theme-switcher>
+        </div>
 
         @if (role === 'admin') {
           <krate-button
             label="Создать новый курс"
             type="button"
             size="large"
-            routerLink="/edit/new-course"
-            routerLinkActive="active"
             class="btn__margin"
+            (click)="openModal()"
           ></krate-button>
         }
 
@@ -53,3 +55,43 @@
     </krate-card>
   }
 </div>
+
+<modal
+  [isOpen]="isModalOpen"
+  [title]="'Создание нового курса'"
+  (closed)="isModalOpen = false"
+>
+  <form class="new-course--form" [formGroup]="newCourseForm" (ngSubmit)="onSubmit()">
+    <label class="field--desc">Название курса:<strong class="required">*</strong></label>
+    <krate-input
+      type="text"
+      placeholder="Введите название"
+      size="large"
+      formControlName="name"
+      [invalid]="name.invalid && isSubmitted"
+      [class.input--field]="!(name.invalid && isSubmitted)"
+    ></krate-input>
+
+    <p
+      class="name--error"
+      [class.visible]="name.invalid && isSubmitted"
+    >
+      Название курса должно быть не менее двух символов
+    </p>
+
+    <label for="desc" class="field--desc">Описание курса:</label>
+    <krate-textarea
+      placeholder="Введите описание"
+      size="large"
+      id="desc"
+      formControlName="description"
+      class="input--field"
+    ></krate-textarea>
+
+    <krate-button
+      label="Создать курс"
+      type="submit"
+      size="large"
+    ></krate-button>
+  </form>
+</modal>

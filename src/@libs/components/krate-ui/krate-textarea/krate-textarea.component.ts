@@ -21,6 +21,7 @@ export class KrateTextareaComponent implements ControlValueAccessor {
   @Input() placeholder: string = 'Ваш текст';
   @Input() size: 'small' | 'medium' | 'large' = 'large';
   @Input() id: string = 'empty';
+  @Input() invalid: boolean = false;
 
   value: string = '';
   disabled = false;

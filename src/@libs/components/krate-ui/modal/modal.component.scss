@@ -1,0 +1,80 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--modal-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-background);
+  border-radius: 5px;
+  border: 2px solid var(--text);
+  padding: 30px;
+  min-width: 250px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transition: padding 0.2s cubic-bezier(0.33, 1, 0.68, 1);;
+}
+
+.close-button {
+  width: 35px;
+  height: 35px;
+  background-color: var(--close-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+
+  &--icon {
+    fill: var(--close-content);
+    stroke: var(--close-content);
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);;
+  }
+
+  &:hover .close-button--icon {
+    fill: var(--close-content-hover);
+    stroke: var(--close-content-hover);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.modal-title {
+  font-size: 24px;
+  color: var(--heading);
+  transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);;
+}
+
+@media screen and (max-width: 425px) {
+  .modal-title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .modal-content {
+    align-items: center;
+    padding: 20px;
+  }
+
+  .modal-header {
+    width: 250px;
+  }
+}

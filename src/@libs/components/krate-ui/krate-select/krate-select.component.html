@@ -1,0 +1,13 @@
+<select
+  [value]="selectedValue"
+  (change)="onSelectionChange($event)"
+  class="select"
+>
+  @for (option of options; track option.value) {
+    <option [value]="option.value" class="option">
+      {{ option.label }}
+    </option>
+  }
+</select>
+
+

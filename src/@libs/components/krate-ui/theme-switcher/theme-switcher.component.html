@@ -1,12 +1,5 @@
-<!--<select [(ngModel)]="currentTheme" (ngModelChange)="updateTheme()">-->
-<!--  <option value="system">Системная</option>-->
-<!--  <option value="light">Светлая</option>-->
-<!--  <option value="dark">Тёмная</option>-->
-<!--</select>-->
-
-<krate-button
-  label="Сменить тему"
-  type="button"
-  size="large"
-  (click)="switchTheme()"
-></krate-button>
+<krate-select
+  [options]="themeOptions"
+  [ngModel]="themeService.currentTheme()"
+  (ngModelChange)="themeService.setTheme($event)"
+></krate-select>

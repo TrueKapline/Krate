@@ -1,24 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ThemeService } from '../../../services/theme/theme.service';
-import { KrateButtonComponent } from '../krate-button/krate-button.component';
+import { KrateSelectComponent } from '../krate-select/krate-select.component';
 
 @Component({
   selector: 'theme-switcher',
   imports: [
     FormsModule,
-    KrateButtonComponent,
+    KrateSelectComponent,
   ],
   templateUrl: './theme-switcher.component.html',
   styleUrl: './theme-switcher.component.scss'
 })
 export class ThemeSwitcherComponent {
-  private themeService = inject(ThemeService);
+  protected themeService = inject(ThemeService);
 
-  currentTheme = this.themeService.currentTheme;
-
-  switchTheme() {
-    const newTheme = this.currentTheme() === 'dark' ? 'light' : 'dark';
-    this.themeService.setTheme(newTheme);
-  }
+  themeOptions = [
+    { value: 'system', label: 'Системная' },
+    { value: 'dark', label: 'Темная' },
+    { value: 'light', label: 'Светлая' },
+  ];
 }

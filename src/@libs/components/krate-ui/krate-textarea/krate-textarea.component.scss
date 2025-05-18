@@ -52,6 +52,14 @@
   height: 200px;
 }
 
+.invalid__container {
+  background-color: var(--error);
+}
+
+.invalid__textarea {
+  border-color: var(--error);
+}
+
 @media screen and (max-width: 425px) {
   .textarea__large {
     width: 300px;

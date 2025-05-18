@@ -2,10 +2,12 @@
   <div
     class="textarea--container"
     [ngClass]="['textarea__' + size]"
+    [class.invalid__container]="invalid"
   >
     <textarea
       [placeholder]="placeholder"
       [ngClass]="['textarea__' + size]"
+      [class.invalid__textarea]="invalid"
       [id]="id"
       (input)="onInput($event)"
       class="textarea--field"

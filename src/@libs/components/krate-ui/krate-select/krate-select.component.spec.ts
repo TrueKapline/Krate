@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewCourseComponent } from './new-course.component';
+import { KrateSelectComponent } from './krate-select.component';
 
-describe('NewCourseComponent', () => {
-  let component: NewCourseComponent;
-  let fixture: ComponentFixture<NewCourseComponent>;
+describe('KrateSelectComponent', () => {
+  let component: KrateSelectComponent;
+  let fixture: ComponentFixture<KrateSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NewCourseComponent]
+      imports: [KrateSelectComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NewCourseComponent);
+    fixture = TestBed.createComponent(KrateSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -27,24 +27,30 @@ export class AuthService {
 
   register(email: string, password: string, username: string) {
     const role = 'user';
-    return this.http.post<AuthDTO>(`${this.backend}/register`, { email, password, username, role }).pipe(
-      catchError((err: HttpErrorResponse) => {
-        if (err.status === 400) {
-          return throwError(() => err.error.message);
-        }
-        return throwError(() => 'Ошибка регистрации');
-      })
+    return this.http
+      .post<AuthDTO>(`${this.backend}/register`,
+        { email, password, username, role }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status === 400) {
+            return throwError(() => err.error.message);
+          }
+          return throwError(() => 'Ошибка регистрации');
+        })
     );
   }
 
   login(email: string, password: string) {
-    return this.http.post<AuthDTO>(`${this.backend}/login`, { email, password }).pipe(
-      catchError((err: HttpErrorResponse) => {
-        if (err.status === 400) {
-          return throwError(() => err.error.message);
-        }
-        return throwError(() => 'Ошибка входа');
-      })
+    return this.http
+      .post<AuthDTO>(`${this.backend}/login`,
+        { email, password }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          if (err.status === 400) {
+            return throwError(() => err.error.message);
+          }
+          return throwError(() => 'Ошибка входа');
+        })
     );
   }
 

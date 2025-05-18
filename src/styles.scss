@@ -30,6 +30,11 @@ html, body {
 
   --loader-color: #ececec;
 
+  --modal-background: rgba(0, 0, 0, 0.5);
+  --close-background: #F4F4F6;
+  --close-content: #8F8F8F;
+  --close-content-hover: #333333;
+
   --header-background: #222222;
   --header-accent: #2DCC8C;
   --header-text: #F4F4F6;
@@ -58,4 +63,9 @@ html, body {
   --logo-background: #F4F4F6;
 
   --loader-color: #333333;
+
+  --modal-background: rgba(0, 0, 0, 0.5);
+  --close-background: #2A2A2A;
+  --close-content: #8F8F8F;
+  --close-content-hover: #F4F4F6;
 }
