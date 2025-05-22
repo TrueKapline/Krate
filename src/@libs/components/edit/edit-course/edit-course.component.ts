@@ -1,12 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditService } from '../../../services/edit/edit.service';
 import { KrateButtonComponent } from '../../krate-ui/krate-button/krate-button.component';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule, ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { ModalComponent } from '../../krate-ui/modal/modal.component';
 import { KrateInputComponent } from '../../krate-ui/krate-input/krate-input.component';
 import { KrateTextareaComponent } from '../../krate-ui/krate-textarea/krate-textarea.component';
 import { KrateSelectComponent } from '../../krate-ui/krate-select/krate-select.component';
+import { KrateProjectComponent } from '../../krate-ui/krate-project/krate-project.component';
+import { ProjectsDTO } from '../../../services/edit/types/edit-course-dto.interface';
+import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-edit-course',
@@ -17,7 +28,9 @@ import { KrateSelectComponent } from '../../krate-ui/krate-select/krate-select.c
     ReactiveFormsModule,
     KrateInputComponent,
     KrateTextareaComponent,
-    KrateSelectComponent
+    KrateSelectComponent,
+    KrateProjectComponent,
+    NgxSkeletonLoaderComponent,
   ],
   templateUrl: './edit-course.component.html',
   styleUrl: './edit-course.component.scss'
@@ -25,9 +38,10 @@ import { KrateSelectComponent } from '../../krate-ui/krate-select/krate-select.c
 export class EditCourseComponent implements OnInit {
   @Input() courseName!: string;
   @Input() courseDescription!: string;
+  @Input() projects!: ProjectsDTO[] | null;
 
   isModalOpen = false;
-  modalType: 'name' | 'description' | 'project' | null = null;
+  modalType: 'name' | 'description' | 'project' | 'delete' | null = null;
   modalHeading = '';
 
   difficultyOptions = [
@@ -40,6 +54,7 @@ export class EditCourseComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private editService: EditService,
   ) { }
 
@@ -51,6 +66,7 @@ export class EditCourseComponent implements OnInit {
         next: (response) => {
           this.courseName = response.name;
           this.courseDescription = response.description;
+          this.projects = response.projects
         }
       })
     })
@@ -62,9 +78,10 @@ export class EditCourseComponent implements OnInit {
     this.editDescriptionForm.reset();
     this.editNameForm.reset();
     this.newProjectForm.reset();
+    this.deleteCourseForm.reset();
   }
 
-  openModal(modalType: 'name' | 'description' | 'project') {
+  openModal(modalType: 'name' | 'description' | 'project' | 'delete') {
     this.modalType = modalType;
     switch (modalType) {
       case "name":
@@ -75,6 +92,9 @@ export class EditCourseComponent implements OnInit {
         break;
       case "project":
         this.modalHeading = 'Создание проекта';
+        break;
+      case 'delete':
+        this.modalHeading = 'Удаление курса';
         break;
     }
     this.isModalOpen = !this.isModalOpen;
@@ -100,6 +120,19 @@ export class EditCourseComponent implements OnInit {
     projectDiff: new FormControl('easy')
   });
 
+  deleteCourseForm = new FormGroup({
+    repeatName: new FormControl('', [
+      this.nameValidator()
+    ])
+  })
+
+  nameValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const isValid = control.value === this.courseName;
+      return isValid ? null : { nameMismatch: true };
+    }
+  }
+
   get name() {
     return this.editNameForm.get('name')!;
   }
@@ -112,7 +145,11 @@ export class EditCourseComponent implements OnInit {
     return this.newProjectForm.get('projectName')!;
   }
 
-  onSubmit(type: 'name' | 'description' | 'project' | null) {
+  get repeatName() {
+    return this.deleteCourseForm.get('repeatName')!;
+  }
+
+  onSubmit(type: 'name' | 'description' | 'project' | 'delete' | null) {
     switch (type) {
       case ('name'): {
         this.isSubmitted = true;
@@ -125,7 +162,7 @@ export class EditCourseComponent implements OnInit {
               this.courseName = response.name;
               this.isModalOpen = false;
             }
-          })
+          });
         }
         break;
       }
@@ -138,7 +175,7 @@ export class EditCourseComponent implements OnInit {
               this.courseDescription = response.description;
               this.isModalOpen = false;
             }
-          })
+          });
         }
         break;
       }
@@ -150,12 +187,28 @@ export class EditCourseComponent implements OnInit {
 
           this.editService.newProject(projectName!, projectDesc!, projectDiff!, this.courseName!).subscribe({
             next: (response) => {
-              console.log(response.name, response.description, response.difficulty);
+              this.projects = response;
               this.isModalOpen = false;
             }
-          })
+          });
+
         }
         break;
+      }
+      case ('delete'): {
+        this.isSubmitted = true;
+
+        if (this.deleteCourseForm.valid) {
+          const { repeatName } = this.deleteCourseForm.value;
+
+          this.editService.deleteCourse(repeatName!).subscribe({
+            next: (response) => {
+              console.log(response);
+              this.isModalOpen = false;
+              this.router.navigate(['/courses']).then();
+            }
+          });
+        }
       }
     }
   }

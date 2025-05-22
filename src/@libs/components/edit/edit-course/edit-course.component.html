@@ -1,38 +1,111 @@
-<div class="edit__name">
-  <h1 class="course-name">{{ courseName }}</h1>
-  <button class="course-name__button" type="button" (click)="openModal('name')">
-    <svg width="23" height="23" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path class="course-name__edit" d="M15.2439 4.86101L12.1377 1.75389C11.8599 1.47596 11.4075 1.47596 11.1296 1.75389L1.98891 10.8972C1.8678 11.0183 1.79299 11.1787 1.78231 11.3497L1.54719 14.692C1.53294 14.8987 1.60775 15.0982 1.7538 15.2443C1.88916 15.3797 2.07084 15.4545 2.25607 15.4545H2.30595L5.64728 15.2193C5.81827 15.2087 5.97857 15.1338 6.09969 15.0127L15.2404 5.86938C15.5254 5.58788 15.5254 5.13893 15.2439 4.86101ZM5.28397 13.8155L3.02547 13.9758L3.18578 11.7167L9.40554 5.49515L11.5037 7.59393L5.28397 13.8155ZM12.5153 6.5856L10.4171 4.48682L11.6389 3.26463L13.7371 5.36341L12.5153 6.5856Z" />
-    </svg>
-  </button>
-</div>
+@if (courseName) {
+  <div class="course-wrapper">
+    <div class="edit__name">
+      <div class="name-wrapper">
+        <h1 class="course-name">{{ courseName }}</h1>
+        <button class="course-name__button" type="button" (click)="openModal('name')">
+          <svg width="23" height="23" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="course-name__edit" d="M15.2439 4.86101L12.1377 1.75389C11.8599 1.47596 11.4075 1.47596 11.1296 1.75389L1.98891 10.8972C1.8678 11.0183 1.79299 11.1787 1.78231 11.3497L1.54719 14.692C1.53294 14.8987 1.60775 15.0982 1.7538 15.2443C1.88916 15.3797 2.07084 15.4545 2.25607 15.4545H2.30595L5.64728 15.2193C5.81827 15.2087 5.97857 15.1338 6.09969 15.0127L15.2404 5.86938C15.5254 5.58788 15.5254 5.13893 15.2439 4.86101ZM5.28397 13.8155L3.02547 13.9758L3.18578 11.7167L9.40554 5.49515L11.5037 7.59393L5.28397 13.8155ZM12.5153 6.5856L10.4171 4.48682L11.6389 3.26463L13.7371 5.36341L12.5153 6.5856Z" />
+          </svg>
+        </button>
+      </div>
+      <krate-button
+        label="Удалить курс"
+        type="button"
+        size="medium"
+        (click)="openModal('delete')"
+      ></krate-button>
+    </div>
 
-<div class="edit__description">
-  <p class="course-description">
-    {{ courseDescription }}
-    <button class="course-description__button" type="button" (click)="openModal('description')">
-      <svg width="23" height="23" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="course-description__edit" d="M15.2439 4.86101L12.1377 1.75389C11.8599 1.47596 11.4075 1.47596 11.1296 1.75389L1.98891 10.8972C1.8678 11.0183 1.79299 11.1787 1.78231 11.3497L1.54719 14.692C1.53294 14.8987 1.60775 15.0982 1.7538 15.2443C1.88916 15.3797 2.07084 15.4545 2.25607 15.4545H2.30595L5.64728 15.2193C5.81827 15.2087 5.97857 15.1338 6.09969 15.0127L15.2404 5.86938C15.5254 5.58788 15.5254 5.13893 15.2439 4.86101ZM5.28397 13.8155L3.02547 13.9758L3.18578 11.7167L9.40554 5.49515L11.5037 7.59393L5.28397 13.8155ZM12.5153 6.5856L10.4171 4.48682L11.6389 3.26463L13.7371 5.36341L12.5153 6.5856Z" />
-      </svg>
-    </button>
-  </p>
-</div>
+    <div class="edit__description">
+      <p class="course-description">
+        @if (courseDescription) {
+          {{ courseDescription }}
+          <button class="course-description__button" type="button" (click)="openModal('description')">
+            <svg width="23" height="23" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="course-description__edit" d="M15.2439 4.86101L12.1377 1.75389C11.8599 1.47596 11.4075 1.47596 11.1296 1.75389L1.98891 10.8972C1.8678 11.0183 1.79299 11.1787 1.78231 11.3497L1.54719 14.692C1.53294 14.8987 1.60775 15.0982 1.7538 15.2443C1.88916 15.3797 2.07084 15.4545 2.25607 15.4545H2.30595L5.64728 15.2193C5.81827 15.2087 5.97857 15.1338 6.09969 15.0127L15.2404 5.86938C15.5254 5.58788 15.5254 5.13893 15.2439 4.86101ZM5.28397 13.8155L3.02547 13.9758L3.18578 11.7167L9.40554 5.49515L11.5037 7.59393L5.28397 13.8155ZM12.5153 6.5856L10.4171 4.48682L11.6389 3.26463L13.7371 5.36341L12.5153 6.5856Z" />
+            </svg>
+          </button>
+        } @else {
+          Добавьте описание
+          <button class="course-description__button" type="button" (click)="openModal('description')">
+            <svg width="23" height="23" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="course-description__edit" d="M15.2439 4.86101L12.1377 1.75389C11.8599 1.47596 11.4075 1.47596 11.1296 1.75389L1.98891 10.8972C1.8678 11.0183 1.79299 11.1787 1.78231 11.3497L1.54719 14.692C1.53294 14.8987 1.60775 15.0982 1.7538 15.2443C1.88916 15.3797 2.07084 15.4545 2.25607 15.4545H2.30595L5.64728 15.2193C5.81827 15.2087 5.97857 15.1338 6.09969 15.0127L15.2404 5.86938C15.5254 5.58788 15.5254 5.13893 15.2439 4.86101ZM5.28397 13.8155L3.02547 13.9758L3.18578 11.7167L9.40554 5.49515L11.5037 7.59393L5.28397 13.8155ZM12.5153 6.5856L10.4171 4.48682L11.6389 3.26463L13.7371 5.36341L12.5153 6.5856Z" />
+            </svg>
+          </button>
+        }
+      </p>
+    </div>
 
-<div class="course-projects">
-  <div class="projects-header">
-    <h2 class="projects-heading">Проекты</h2>
-    <krate-button
-      label="Создать проект"
-      type="button"
-      size="medium"
-      (click)="openModal('project')"
-    ></krate-button>
+    <div class="course-projects">
+      <div class="projects--header">
+        <h2 class="projects--header__heading">Проекты</h2>
+        <krate-button
+          label="Создать проект"
+          type="button"
+          size="medium"
+          (click)="openModal('project')"
+          class="projects--header__button"
+        ></krate-button>
+      </div>
+
+      <div class="projects-grid">
+        @for (project of projects; track project.name) {
+          <krate-project
+            [name]="project.name"
+            [description]="project.description"
+            [difficulty]="project.difficulty"
+            [isPending]="false"
+          ></krate-project>
+        }
+      </div>
+    </div>
   </div>
+} @else {
+  <div class="course-wrapper">
+    <div class="edit__name">
+      <div class="name-wrapper">
+        <ngx-skeleton-loader
+          [theme]="{ height: '50px', width: '250px', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+      <ngx-skeleton-loader
+        [theme]="{ height: '55px', width: '300px', 'background-color': 'var(--loader-color)' }"
+        animation="pulse"
+      ></ngx-skeleton-loader>
+    </div>
 
-  <div class="projects-grid">
+    <div class="loader__description">
+      <ngx-skeleton-loader
+        [theme]="{ 'background-color': 'var(--loader-color)' }"
+        [count]="2"
+        animation="pulse"
+      ></ngx-skeleton-loader>
+    </div>
+
+    <div class="course-projects">
+      <div class="projects--header">
+        <ngx-skeleton-loader
+          [theme]="{ height: '50px', width: '250px', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{ height: '55px', width: '300px', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+
+      <div class="projects-grid">
+        @for (item of [1,2,3,4,5,6]; track item) {
+          <krate-project
+            [isPending]="true"
+          ></krate-project>
+        }
+      </div>
+    </div>
   </div>
-</div>
-
+}
 
 <modal
   [isOpen]="isModalOpen"
@@ -122,6 +195,32 @@
 
         <krate-button
           label="Создать проект"
+          type="submit"
+          size="large"
+        ></krate-button>
+      </form>
+    }
+    @case ('delete') {
+      <form class="edit-form" [formGroup]="deleteCourseForm" (ngSubmit)="onSubmit(modalType)">
+        <label class="field--desc">Название курса:</label>
+        <krate-input
+          type="text"
+          placeholder="Введите название"
+          size="large"
+          formControlName="repeatName"
+          [invalid]="repeatName.invalid && isSubmitted"
+          [class.input--field]="!(repeatName.invalid && isSubmitted)"
+        ></krate-input>
+
+        <p
+          class="name--error"
+          [class.visible]="repeatName.invalid && isSubmitted"
+        >
+          Введенный текст не совпадает с названием курса
+        </p>
+
+        <krate-button
+          label="Удалить курс"
           type="submit"
           size="large"
         ></krate-button>

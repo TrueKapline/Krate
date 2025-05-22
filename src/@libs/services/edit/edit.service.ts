@@ -4,10 +4,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { catchError, throwError } from 'rxjs';
 import { NewCourseDTO } from './types/new-course-dto.interface';
-import { EditedCourseDTO } from './types/edit-course-dto.interface';
+import { EditedCourseDTO, ProjectsDTO } from './types/edit-course-dto.interface';
 import { RenameCourseDTO } from './types/rename-course-dto.interface';
 import { ChangeCourseDescDTO } from './types/change-course-desc-dto.interface';
-import { NewProjectDTO } from './types/new-project-dto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -89,8 +88,24 @@ export class EditService {
     }
 
     return this.http
-      .post<NewProjectDTO>(`${this.backend}/newProject`,
+      .post<ProjectsDTO[]>(`${this.backend}/newProject`,
         { name, description, difficulty, course },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  deleteCourse(name: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post(`${this.backend}/deleteCourse`,
+        { name },
         { headers: { 'Authorization': this.token } }
       ).pipe(
         catchError((err: HttpErrorResponse) => {

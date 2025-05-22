@@ -1,9 +1,20 @@
+.course-wrapper {
+  width: 1132px;
+}
+
 .edit__name {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
+  justify-content: space-between;
   margin-bottom: 25px;
+}
+
+.name-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
 .edit__description {
@@ -12,7 +23,11 @@
   align-items: center;
   margin-bottom: 25px;
   gap: 5px;
-  max-width: 1300px;
+}
+
+.loader__description {
+  margin-bottom: 25px;
+  max-width: 1132px;
 }
 
 .course-name {
@@ -47,17 +62,17 @@
   }
 }
 
-.projects-header {
+.projects--header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-}
-
-.projects-heading {
-  font-size: 48px;
-  font-weight: 800;
   margin-bottom: 25px;
+
+  &__heading {
+    font-size: 48px;
+    font-weight: 800;
+  }
 }
 
 .projects-grid {
@@ -90,7 +105,7 @@
   color: var(--error);
   display: none;
   font-size: 15px;
-  max-width: 350px;
+  width: 350px;
   margin: 2px 0 12px;
   transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -108,18 +123,75 @@
   margin-bottom: 15px;
 }
 
+@media screen and (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .course-wrapper {
+    width: 748px;
+  }
+
+  .course-description {
+    font-size: 24px;
+  }
+
+  .course-name,
+  .projects--header__heading {
+    font-size: 42px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-wrapper {
+    width: 364px;
+  }
+
+  .name-wrapper {
+    margin-bottom: 25px;
+  }
+
+  .edit__name {
+    flex-direction: column;
+  }
+
+  .projects--header {
+    flex-direction: column;
+
+    &__heading {
+      margin-bottom: 25px;
+    }
+  }
+}
+
 @media screen and (max-width: 425px) {
   .name--error,
   .field--desc {
     max-width: 300px;
   }
 
+  .course-wrapper {
+    width: 344px;
+  }
+
   .difficulty {
     width: 300px;
+  }
+
+  .course-description {
+    font-size: 18px;
   }
 }
 
 @media screen and (max-width: 375px) {
+  .course-wrapper {
+    width: 294px;
+  }
+
   .name--error,
   .field--desc {
     max-width: 250px;

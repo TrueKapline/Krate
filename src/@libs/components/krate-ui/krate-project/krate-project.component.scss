@@ -1,0 +1,70 @@
+.project-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+  max-width: 300px;
+}
+
+.project--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 17px;
+  }
+
+  &__heading {
+    margin-bottom: 7px;
+    font-size: 32px;
+    font-weight: 800;
+    transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  &__edit {
+    fill: var(--subtext);
+  }
+}
+
+.difficulty {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+
+  &__text {
+    color: var(--subtext);
+  }
+}
+
+.project--description {
+  width: 300px;
+}
+
+.loader__btn {
+  width: 300px;
+  height: 55px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@media screen and (max-width: 425px) {
+  .project--header {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .loader__btn,
+  .loader__desc {
+    width: 250px;
+  }
+
+  .project--description {
+    width: 250px;
+  }
+}

@@ -20,6 +20,8 @@ export class PluralizePipe implements PipeTransform {
     switch (last) {
       case 1:
         return singular;
+      case 2:
+        return few;
       case 4:
         return few;
       default:

@@ -1,0 +1,98 @@
+
+@if (!isPending) {
+  <krate-card>
+    <div class="project-wrapper">
+      <div class="project--content">
+        <div class="project--header">
+          <h1 class="project--header__heading">{{ name }}</h1>
+        </div>
+        <div class="difficulty">
+          @switch (difficulty) {
+            @case ('easy') {
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="1" width="2.5" height="13" rx="1.25" fill="#646464"/>
+                <rect x="7" y="4" width="2.5" height="10" rx="1.25" fill="#646464"/>
+                <rect x="2" y="7" width="2.5" height="7" rx="1.25" fill="#48AF38"/>
+              </svg>
+              <p class="difficulty__text">
+                Простой
+              </p>
+            }
+            @case ('medium') {
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="1" width="2.5" height="13" rx="1.25" fill="#646464"/>
+                <rect x="7" y="4" width="2.5" height="10" rx="1.25" fill="#FFB74B"/>
+                <rect x="2" y="7" width="2.5" height="7" rx="1.25" fill="#FFB74B"/>
+              </svg>
+              <p class="difficulty__text">
+                Средний
+              </p>
+            }
+            @case ('hard') {
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="1" width="2.5" height="13" rx="1.25" fill="#FF3C38"/>
+                <rect x="7" y="4" width="2.5" height="10" rx="1.25" fill="#FF3C38"/>
+                <rect x="2" y="7" width="2.5" height="7" rx="1.25" fill="#FF3C38"/>
+              </svg>
+              <p class="difficulty__text">
+                Сложный
+              </p>
+            }
+          }
+        </div>
+        <p class="project--description">{{ description }}</p>
+      </div>
+
+      @if (role() === 'admin') {
+        <krate-button
+          label="Изменить проект"
+          type="button"
+          size="medium"
+        ></krate-button>
+      } @else {
+        <krate-button
+          label="Выбрать проект"
+          type="button"
+          size="medium"
+        ></krate-button>
+      }
+    </div>
+  </krate-card>
+} @else {
+  <krate-card>
+    <div class="project-wrapper">
+      <div class="project--content">
+        <div class="project--header">
+          <ngx-skeleton-loader
+            [theme]="{ height: '40px', width: '200px', 'background-color': 'var(--loader-color)', 'margin-bottom': '7px'}"
+            animation="pulse"
+          ></ngx-skeleton-loader>
+        </div>
+        <div class="difficulty">
+          <ngx-skeleton-loader
+            [theme]="{ height: '20px', width: '20px', 'background-color': 'var(--loader-color)', 'margin-bottom': '0'}"
+            animation="pulse"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{ height: '20px', width: '100px', 'background-color': 'var(--loader-color)', 'margin-bottom': '0'}"
+            animation="pulse"
+          ></ngx-skeleton-loader>
+        </div>
+        <ngx-skeleton-loader
+          [theme]="{ height: '20px', 'background-color': 'var(--loader-color)', 'margin-bottom': '0'}"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{ height: '20px', 'background-color': 'var(--loader-color)', 'margin-bottom': '0'}"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+
+      <ngx-skeleton-loader
+        [theme]="{ height: '55px', 'background-color': 'var(--loader-color)', 'margin-bottom': '0'}"
+        animation="pulse"
+        class="loader__btn"
+      ></ngx-skeleton-loader>
+    </div>
+  </krate-card>
+}
