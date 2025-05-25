@@ -16,8 +16,9 @@ import { KrateInputComponent } from '../../krate-ui/krate-input/krate-input.comp
 import { KrateTextareaComponent } from '../../krate-ui/krate-textarea/krate-textarea.component';
 import { KrateSelectComponent } from '../../krate-ui/krate-select/krate-select.component';
 import { KrateProjectComponent } from '../../krate-ui/krate-project/krate-project.component';
-import { ProjectsDTO } from '../../../services/edit/types/edit-course-dto.interface';
+import { LessonsDTO, ProjectsDTO } from '../../../services/edit/types/edit-course-dto.interface';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
+import { DraggableListComponent } from '../../krate-ui/draggable-list/draggable-list.component';
 
 @Component({
   selector: 'app-edit-course',
@@ -31,6 +32,7 @@ import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
     KrateSelectComponent,
     KrateProjectComponent,
     NgxSkeletonLoaderComponent,
+    DraggableListComponent,
   ],
   templateUrl: './edit-course.component.html',
   styleUrl: './edit-course.component.scss'
@@ -39,9 +41,10 @@ export class EditCourseComponent implements OnInit {
   @Input() courseName!: string;
   @Input() courseDescription!: string;
   @Input() projects!: ProjectsDTO[] | null;
+  @Input() lessons!: LessonsDTO[] | null;
 
   isModalOpen = false;
-  modalType: 'name' | 'description' | 'project' | 'delete' | null = null;
+  modalType: 'name' | 'description' | 'project' | 'lesson' | 'delete' | null = null;
   modalHeading = '';
 
   difficultyOptions = [
@@ -66,10 +69,18 @@ export class EditCourseComponent implements OnInit {
         next: (response) => {
           this.courseName = response.name;
           this.courseDescription = response.description;
-          this.projects = response.projects
+          this.projects = response.projects;
+          this.lessons = response.lessons;
         }
       })
-    })
+    });
+  }
+
+  onLessonsRearrange() {
+    const titles = this.lessons?.map(item => item.title);
+    if (titles) {
+      this.editService.changeLessonsOrder(titles, this.courseName).subscribe();
+    }
   }
 
   onModalClose() {
@@ -81,7 +92,7 @@ export class EditCourseComponent implements OnInit {
     this.deleteCourseForm.reset();
   }
 
-  openModal(modalType: 'name' | 'description' | 'project' | 'delete') {
+  openModal(modalType: 'name' | 'description' | 'project' | 'lesson' | 'delete') {
     this.modalType = modalType;
     switch (modalType) {
       case "name":
@@ -92,6 +103,9 @@ export class EditCourseComponent implements OnInit {
         break;
       case "project":
         this.modalHeading = 'Создание проекта';
+        break;
+      case "lesson":
+        this.modalHeading = 'Создание урока';
         break;
       case 'delete':
         this.modalHeading = 'Удаление курса';
@@ -120,11 +134,18 @@ export class EditCourseComponent implements OnInit {
     projectDiff: new FormControl('easy')
   });
 
+  newLessonForm = new FormGroup({
+    lessonName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ])
+  });
+
   deleteCourseForm = new FormGroup({
     repeatName: new FormControl('', [
       this.nameValidator()
     ])
-  })
+  });
 
   nameValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -145,11 +166,15 @@ export class EditCourseComponent implements OnInit {
     return this.newProjectForm.get('projectName')!;
   }
 
+  get lessonName() {
+    return this.newLessonForm.get('lessonName')!;
+  }
+
   get repeatName() {
     return this.deleteCourseForm.get('repeatName')!;
   }
 
-  onSubmit(type: 'name' | 'description' | 'project' | 'delete' | null) {
+  onSubmit(type: 'name' | 'description' | 'project' | 'lesson' | 'delete' | null) {
     switch (type) {
       case ('name'): {
         this.isSubmitted = true;
@@ -191,6 +216,21 @@ export class EditCourseComponent implements OnInit {
               this.isModalOpen = false;
             }
           });
+        }
+        break;
+      }
+      case ('lesson'): {
+        this.isSubmitted = true;
+
+        if (this.newLessonForm.valid) {
+          const { lessonName } = this.newLessonForm.value;
+
+          this.editService.newLesson(lessonName!, this.courseName!).subscribe({
+            next: (response) => {
+              this.lessons = response;
+              this.isModalOpen = false;
+            }
+          });
 
         }
         break;
@@ -202,8 +242,7 @@ export class EditCourseComponent implements OnInit {
           const { repeatName } = this.deleteCourseForm.value;
 
           this.editService.deleteCourse(repeatName!).subscribe({
-            next: (response) => {
-              console.log(response);
+            next: () => {
               this.isModalOpen = false;
               this.router.navigate(['/courses']).then();
             }

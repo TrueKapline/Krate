@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { catchError, throwError } from 'rxjs';
 import { NewCourseDTO } from './types/new-course-dto.interface';
-import { EditedCourseDTO, ProjectsDTO } from './types/edit-course-dto.interface';
+import { EditedCourseDTO, LessonsDTO, ProjectsDTO } from './types/edit-course-dto.interface';
 import { RenameCourseDTO } from './types/rename-course-dto.interface';
 import { ChangeCourseDescDTO } from './types/change-course-desc-dto.interface';
 
@@ -90,6 +90,38 @@ export class EditService {
     return this.http
       .post<ProjectsDTO[]>(`${this.backend}/newProject`,
         { name, description, difficulty, course },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  newLesson(title: string, course: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post<LessonsDTO[]>(`${this.backend}/newLesson`,
+        { title, course },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  changeLessonsOrder(lessons: string[], course: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post(`${this.backend}/changeLessonsOrder`,
+        { lessons, course },
         { headers: { 'Authorization': this.token } }
       ).pipe(
         catchError((err: HttpErrorResponse) => {

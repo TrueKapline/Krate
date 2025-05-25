@@ -62,7 +62,8 @@
   }
 }
 
-.projects--header {
+.projects--header,
+.lessons--header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -79,6 +80,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  margin-bottom: 25px;
+}
+
+.no-content__msg {
+  font-size: 20px;
+  color: var(--error);
 }
 
 .edit-form {
@@ -137,7 +144,8 @@
   }
 
   .course-name,
-  .projects--header__heading {
+  .projects--header__heading,
+  .lessons--header__heading {
     font-size: 42px;
   }
 }
@@ -159,7 +167,8 @@
     flex-direction: column;
   }
 
-  .projects--header {
+  .projects--header,
+  .lessons--header {
     flex-direction: column;
 
     &__heading {

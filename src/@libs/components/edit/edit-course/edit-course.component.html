@@ -50,15 +50,44 @@
       </div>
 
       <div class="projects-grid">
-        @for (project of projects; track project.name) {
-          <krate-project
-            [name]="project.name"
-            [description]="project.description"
-            [difficulty]="project.difficulty"
-            [isPending]="false"
-          ></krate-project>
+        @if (projects) {
+          @for (project of projects; track project.name) {
+            <krate-project
+              [name]="project.name"
+              [description]="project.description"
+              [difficulty]="project.difficulty"
+              [isPending]="false"
+            ></krate-project>
+          }
+        } @else {
+          <h3 class="no-content__msg">Проектов еще нет</h3>
         }
       </div>
+    </div>
+
+    <div class="course-lessons">
+      <div class="lessons--header">
+        <h2 class="lessons--header__heading">Уроки</h2>
+        <krate-button
+          label="Создать урок"
+          type="button"
+          size="medium"
+          (click)="openModal('lesson')"
+          class="lessons--header__button"
+        ></krate-button>
+      </div>
+
+      @if (lessons) {
+        <draggable-list
+          [items]="lessons"
+          [withNumbers]="true"
+          [withButton]="true"
+          (rearrange)="onLessonsRearrange()"
+
+        ></draggable-list>
+      } @else {
+        <h3 class="no-content__msg">Уроков еще нет</h3>
+      }
     </div>
   </div>
 } @else {
@@ -195,6 +224,32 @@
 
         <krate-button
           label="Создать проект"
+          type="submit"
+          size="large"
+        ></krate-button>
+      </form>
+    }
+    @case ('lesson') {
+      <form class="edit-form" [formGroup]="newLessonForm" (ngSubmit)="onSubmit(modalType)">
+        <label class="field--desc">Название урока:</label>
+        <krate-input
+          type="text"
+          placeholder="Введите название"
+          size="large"
+          formControlName="lessonName"
+          [invalid]="lessonName.invalid && isSubmitted"
+          [class.input--field]="!(lessonName.invalid && isSubmitted)"
+        ></krate-input>
+
+        <p
+          class="name--error"
+          [class.visible]="lessonName.invalid && isSubmitted"
+        >
+          Название урока должно быть не менее двух символов
+        </p>
+
+        <krate-button
+          label="Создать урок"
           type="submit"
           size="large"
         ></krate-button>
