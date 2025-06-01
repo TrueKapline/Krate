@@ -23,6 +23,7 @@ export class KrateInputComponent implements ControlValueAccessor {
   @Input() size: 'small' | 'medium' | 'large' = 'large';
   @Input() invalid: boolean = false;
   @Input() autocomplete?: 'new-password' | 'current-password' | 'email' | 'nickname';
+  @Input() customValue?: string = '';
 
   value: string = '';
   disabled = false;

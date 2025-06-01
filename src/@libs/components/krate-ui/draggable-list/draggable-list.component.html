@@ -22,9 +22,7 @@
       </div>
 
       @if (withButton) {
-        <button class="drag-item--button" (click)="onClick()">
-          Открыть
-        </button>
+        <button class="drag-item--button" (click)="onClick(item)">Открыть</button>
       }
     </div>
   }

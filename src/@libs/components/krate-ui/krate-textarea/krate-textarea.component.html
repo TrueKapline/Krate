@@ -9,6 +9,7 @@
       [ngClass]="['textarea__' + size]"
       [class.invalid__textarea]="invalid"
       [id]="id"
+      [value]="customValue"
       (input)="onInput($event)"
       class="textarea--field"
     ></textarea>

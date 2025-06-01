@@ -14,6 +14,8 @@ import { GuestGuard } from '../@libs/services/auth/model/guest.guard';
 import { AdminGuard } from '../@libs/services/auth/model/admin.guard';
 import { EditCourseComponent } from '../@libs/components/edit/edit-course/edit-course.component';
 import { EditComponent } from './components/edit/edit.component';
+import { EditLessonComponent } from '../@libs/components/edit/edit-lesson/edit-lesson.component';
+import { EditProjectComponent } from '../@libs/components/edit/edit-project/edit-project.component';
 
 export const routes: Routes = [
   {
@@ -47,6 +49,8 @@ export const routes: Routes = [
         canActivate: [AdminGuard],
         children: [
           { path: 'course/:courseName', component: EditCourseComponent },
+          { path: 'course/:courseName/lesson/:lessonName', component: EditLessonComponent },
+          { path: 'course/:courseName/project/:projectName', component: EditProjectComponent },
         ]
       },
       { path: '', redirectTo: 'courses', pathMatch: 'full' },

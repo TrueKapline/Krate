@@ -1,0 +1,42 @@
+.line-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  background-color: var(--card-background);
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.switcher-element {
+  flex: 1 1 auto;
+  text-align: center;
+
+  &:hover &--name {
+    border-color: var(--accent-green);
+  }
+
+  &--input {
+    display: none;
+
+    &:checked + .switcher-element--name {
+      border-color: var(--accent-green);
+      background-color: var(--accent-green);
+      color: var(--header-background);
+    }
+  }
+
+  &--name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid var(--card-background);
+    border-radius: 3px;
+    padding: 8px 0;
+    color: var(--text);
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+    font-weight: 500;
+  }
+}

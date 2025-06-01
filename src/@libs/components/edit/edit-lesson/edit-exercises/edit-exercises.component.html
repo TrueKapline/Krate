@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <krate-button
+    label="Создать задание"
+    type="button"
+    size="large"
+    class="create-exercise"
+    (click)="openModal()"
+  ></krate-button>
+
+  @for (item of exercises(); track item; let i = $index) {
+    <exercise
+      [type]="item.type"
+      [groupId]="item.id"
+      [options]="exercises()[i].options"
+      [question]="exercises()[i].question"
+      [selectedOption]="exercises()[i].selectedOption"
+      (onDelete)="deleteExercise(i)"
+      (onSave)="saveExercise($event)"
+    ></exercise>
+  }
+</div>
+
+<modal
+  [isOpen]="isModalOpen"
+  [title]="'Создание задания'"
+  (closed)="onModalClose()"
+>
+  <form class="edit-form" [formGroup]="newExerciseForm" (ngSubmit)="onSubmit()">
+    <div class="type">
+      <p>Тип задания:</p>
+      <krate-select
+        [options]="typeOptions"
+        formControlName="exerciseType"
+      ></krate-select>
+    </div>
+
+    <krate-button
+      label="Создать задание"
+      type="submit"
+      size="large"
+    ></krate-button>
+  </form>
+</modal>

@@ -1,0 +1,164 @@
+<krate-card class="card">
+  @switch (type) {
+    @case ('single') {
+      <div class="exercise">
+        <div class="exercise-heading">
+          <div class="type">
+            <p class="type--text">Одиночный выбор</p>
+          </div>
+          <div class="heading-buttons">
+            @if (!isRedacting) {
+              <button type="button" class="heading-button" (click)="redact()">Редактировать</button>
+            } @else {
+              <button type="button" class="heading-button" (click)="save()">Сохранить</button>
+            }
+            <button type="button" class="delete-button" (click)="openModal()">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="delete-button--icon" d="M8.08341 8.16663C8.58969 8.16663 9.00008 8.57702 9.00008 9.08329V13.6666C9.00008 14.1729 8.58969 14.5833 8.08341 14.5833C7.57715 14.5833 7.16675 14.1729 7.16675 13.6666V9.08329C7.16675 8.57702 7.57716 8.16663 8.08341 8.16663Z"/>
+                <path class="delete-button--icon" d="M12.6666 9.08329C12.6666 8.57702 12.2562 8.16663 11.7499 8.16663C11.2436 8.16663 10.8333 8.57702 10.8333 9.08329V13.6666C10.8333 14.1729 11.2436 14.5833 11.7499 14.5833C12.2562 14.5833 12.6666 14.1729 12.6666 13.6666V9.08329Z"/>
+                <path class="delete-button--icon" fill-rule="evenodd" clip-rule="evenodd" d="M5.58939 3.58337L5.87927 2.71375C6.25358 1.59081 7.30446 0.833374 8.48812 0.833374H11.3454C12.5291 0.833374 13.5799 1.59081 13.9542 2.71375L14.2441 3.58337H17.2501C17.7564 3.58337 18.1667 3.99378 18.1667 4.50004C18.1667 5.0063 17.7564 5.41671 17.2501 5.41671H16.3334V16.4167C16.3334 17.9355 15.1022 19.1667 13.5834 19.1667H6.25008C4.7313 19.1667 3.50008 17.9355 3.50008 16.4167V5.41671H2.58341C2.07716 5.41671 1.66675 5.0063 1.66675 4.50004C1.66675 3.99378 2.07716 3.58337 2.58341 3.58337H5.58939ZM12.215 3.2935L12.3116 3.58337H7.52189L7.61852 3.2935C7.74329 2.91919 8.09359 2.66671 8.48812 2.66671H11.3454C11.7399 2.66671 12.0903 2.91919 12.215 3.2935ZM5.33341 5.41671V16.4167C5.33341 16.923 5.74382 17.3334 6.25008 17.3334H13.5834C14.0897 17.3334 14.5001 16.923 14.5001 16.4167V5.41671H5.33341Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="exercise-body">
+          <input
+            type="text"
+            class="exercise-question"
+            placeholder="Ваш вопрос"
+            [(ngModel)]="question"
+            [disabled]="!isRedacting"
+          >
+
+          <div>
+            @for (option of options; track option) {
+              <label class="option">
+                <input
+                  type="radio"
+                  [name]="groupId"
+                  [(ngModel)]="selectedOption"
+                  [value]="option.value"
+                  [disabled]="!isRedacting"
+                  class="option--radio"
+                >
+                <span class="option--radio__checkmark"></span>
+                <input
+                  type="text"
+                  [(ngModel)]="option.userInput"
+                  placeholder="Опция"
+                  [disabled]="!isRedacting"
+                  class="option--input"
+                >
+                <button
+                  (click)="deleteOption(option)"
+                  [disabled]="!isRedacting"
+                  class="option--delete"
+                >
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_403_2)">
+                      <path class="option--delete__icon" d="M13.9449 9.90502L19.1249 4.72502C19.5049 4.34502 19.5049 3.72502 19.1249 3.34502L16.4449 0.685024C16.0649 0.305024 15.4449 0.305024 15.0649 0.685024L9.9049 5.86502L4.7249 0.685024C4.3449 0.305024 3.7249 0.305024 3.3449 0.685024L0.684902 3.36502C0.304902 3.74502 0.304902 4.36502 0.684902 4.74502L5.8649 9.90502L0.684902 15.085C0.304902 15.465 0.304902 16.085 0.684902 16.465L3.3449 19.125C3.7249 19.505 4.3449 19.505 4.7249 19.125L9.9049 13.945L15.0849 19.125C15.4649 19.505 16.0849 19.505 16.4649 19.125L19.1249 16.465C19.5049 16.085 19.5049 15.465 19.1249 15.085L13.9449 9.90502Z"/>
+                    </g>
+                  </svg>
+                </button>
+              </label>
+            }
+          </div>
+          @if (isRedacting) {
+            <button (click)="addOption()" class="add-option">Добавить опцию</button>
+          }
+        </div>
+      </div>
+    }
+    @case ('multiple') {
+      <div class="exercise">
+        <div class="exercise-heading">
+          <div class="type">
+            <p class="type--text">Множественный выбор</p>
+          </div>
+          <div class="heading-buttons">
+            @if (!isRedacting) {
+              <button type="button" class="heading-button" (click)="redact()">Редактировать</button>
+            } @else {
+              <button type="button" class="heading-button" (click)="save()">Сохранить</button>
+            }
+            <button type="button" class="delete-button" (click)="openModal()">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="delete-button--icon" d="M8.08341 8.16663C8.58969 8.16663 9.00008 8.57702 9.00008 9.08329V13.6666C9.00008 14.1729 8.58969 14.5833 8.08341 14.5833C7.57715 14.5833 7.16675 14.1729 7.16675 13.6666V9.08329C7.16675 8.57702 7.57716 8.16663 8.08341 8.16663Z"/>
+                <path class="delete-button--icon" d="M12.6666 9.08329C12.6666 8.57702 12.2562 8.16663 11.7499 8.16663C11.2436 8.16663 10.8333 8.57702 10.8333 9.08329V13.6666C10.8333 14.1729 11.2436 14.5833 11.7499 14.5833C12.2562 14.5833 12.6666 14.1729 12.6666 13.6666V9.08329Z"/>
+                <path class="delete-button--icon" fill-rule="evenodd" clip-rule="evenodd" d="M5.58939 3.58337L5.87927 2.71375C6.25358 1.59081 7.30446 0.833374 8.48812 0.833374H11.3454C12.5291 0.833374 13.5799 1.59081 13.9542 2.71375L14.2441 3.58337H17.2501C17.7564 3.58337 18.1667 3.99378 18.1667 4.50004C18.1667 5.0063 17.7564 5.41671 17.2501 5.41671H16.3334V16.4167C16.3334 17.9355 15.1022 19.1667 13.5834 19.1667H6.25008C4.7313 19.1667 3.50008 17.9355 3.50008 16.4167V5.41671H2.58341C2.07716 5.41671 1.66675 5.0063 1.66675 4.50004C1.66675 3.99378 2.07716 3.58337 2.58341 3.58337H5.58939ZM12.215 3.2935L12.3116 3.58337H7.52189L7.61852 3.2935C7.74329 2.91919 8.09359 2.66671 8.48812 2.66671H11.3454C11.7399 2.66671 12.0903 2.91919 12.215 3.2935ZM5.33341 5.41671V16.4167C5.33341 16.923 5.74382 17.3334 6.25008 17.3334H13.5834C14.0897 17.3334 14.5001 16.923 14.5001 16.4167V5.41671H5.33341Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="exercise-body">
+          <input
+            type="text"
+            class="exercise-question"
+            placeholder="Ваш вопрос"
+            [(ngModel)]="question"
+            [disabled]="!isRedacting"
+          >
+
+          <div>
+            @for (option of options; track option) {
+              <label class="option">
+                <input
+                  type="checkbox"
+                  [name]="groupId"
+                  [(ngModel)]="option.isChecked"
+                  [value]="option.value"
+                  [disabled]="!isRedacting"
+                  class="option--checkbox"
+                >
+                <span class="option--checkbox__checkmark"></span>
+                <input
+                  type="text"
+                  [(ngModel)]="option.userInput"
+                  placeholder="Опция"
+                  [disabled]="!isRedacting"
+                  class="option--input"
+                >
+                <button
+                  (click)="deleteOption(option)"
+                  [disabled]="!isRedacting"
+                  class="option--delete"
+                >
+                  <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_403_2)">
+                      <path class="option--delete__icon" d="M13.9449 9.90502L19.1249 4.72502C19.5049 4.34502 19.5049 3.72502 19.1249 3.34502L16.4449 0.685024C16.0649 0.305024 15.4449 0.305024 15.0649 0.685024L9.9049 5.86502L4.7249 0.685024C4.3449 0.305024 3.7249 0.305024 3.3449 0.685024L0.684902 3.36502C0.304902 3.74502 0.304902 4.36502 0.684902 4.74502L5.8649 9.90502L0.684902 15.085C0.304902 15.465 0.304902 16.085 0.684902 16.465L3.3449 19.125C3.7249 19.505 4.3449 19.505 4.7249 19.125L9.9049 13.945L15.0849 19.125C15.4649 19.505 16.0849 19.505 16.4649 19.125L19.1249 16.465C19.5049 16.085 19.5049 15.465 19.1249 15.085L13.9449 9.90502Z"/>
+                    </g>
+                  </svg>
+                </button>
+              </label>
+            }
+          </div>
+          @if (isRedacting) {
+            <button (click)="addOption()" class="add-option">Добавить опцию</button>
+          }
+        </div>
+      </div>
+    }
+  }
+</krate-card>
+
+<modal
+  [isOpen]="isModalOpen"
+  [title]="'Вы уверены?'"
+  (closed)="onModalClose()"
+>
+  <form class="edit-form">
+    <krate-button
+      label="Удалить"
+      type="button"
+      size="large"
+      (click)="deleteExercise()"
+    ></krate-button>
+
+    <krate-button
+      label="Отмена"
+      type="button"
+      size="large"
+      (click)="onModalClose()"
+    ></krate-button>
+  </form>
+</modal>

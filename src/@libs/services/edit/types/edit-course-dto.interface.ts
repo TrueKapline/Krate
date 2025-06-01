@@ -15,3 +15,22 @@ export interface LessonsDTO {
   title: string;
   order: number;
 }
+
+export interface LessonContentDTO {
+  title: string;
+  content: string;
+}
+
+export interface ExerciseDTO {
+  id: string;
+  type: 'single' | 'multiple';
+  question: string;
+  options: OptionsDTO[];
+  selectedOption?: string;
+}
+
+export interface OptionsDTO {
+  value: string;
+  userInput: string;
+  isChecked: boolean;
+}

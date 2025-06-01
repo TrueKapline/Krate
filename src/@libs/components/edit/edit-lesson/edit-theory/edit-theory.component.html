@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <editor
+    [init]="editorConfig"
+    [(ngModel)]="content"
+    class="theory-editor"
+  ></editor>
+
+  <krate-button
+    [label]="'Сохранить'"
+    [type]="'submit'"
+    [size]="'medium'"
+    (click)="saveContent()"
+    class="save-button"
+  ></krate-button>
+</div>

@@ -83,6 +83,10 @@ export class EditCourseComponent implements OnInit {
     }
   }
 
+  onLessonsClick(item: LessonsDTO) {
+    this.router.navigate([`/edit/course/${this.courseName.toLowerCase()}/lesson`, item.title.toLowerCase()]).then();
+  }
+
   onModalClose() {
     this.isModalOpen = false;
     this.isSubmitted = false;
@@ -227,8 +231,10 @@ export class EditCourseComponent implements OnInit {
 
           this.editService.newLesson(lessonName!, this.courseName!).subscribe({
             next: (response) => {
-              this.lessons = response;
               this.isModalOpen = false;
+              this.router.navigate(
+                [`/edit/course/${this.courseName.toLowerCase()}/lesson`, response.title.toLowerCase()]
+              ).then();
             }
           });
 

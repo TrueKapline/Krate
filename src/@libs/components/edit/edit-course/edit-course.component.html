@@ -83,7 +83,7 @@
           [withNumbers]="true"
           [withButton]="true"
           (rearrange)="onLessonsRearrange()"
-
+          (buttonClick)="onLessonsClick($event)"
         ></draggable-list>
       } @else {
         <h3 class="no-content__msg">Уроков еще нет</h3>
@@ -151,6 +151,7 @@
           size="large"
           formControlName="name"
           [invalid]="name.invalid && isSubmitted"
+          [customValue]="courseName"
           [class.input--field]="!(name.invalid && isSubmitted)"
         ></krate-input>
 
@@ -176,6 +177,7 @@
           size="large"
           id="desc"
           formControlName="description"
+          [customValue]="courseDescription"
           class="input--field"
         ></krate-textarea>
 

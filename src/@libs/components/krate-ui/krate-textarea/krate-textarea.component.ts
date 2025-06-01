@@ -22,6 +22,7 @@ export class KrateTextareaComponent implements ControlValueAccessor {
   @Input() size: 'small' | 'medium' | 'large' = 'large';
   @Input() id: string = 'empty';
   @Input() invalid: boolean = false;
+  @Input() customValue?: string = '';
 
   value: string = '';
   disabled = false;

@@ -1,0 +1,297 @@
+.exercise {
+  width: 100%;
+}
+
+.card {
+  display: block;
+  width: 1000px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  margin-bottom: 20px;
+}
+
+.exercise-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.type {
+  background-color: var(--text);
+  color: var(--card-background);
+  padding: 8px 14px;
+  border-radius: 5px;
+}
+
+.heading-buttons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-background);
+  border: 2px solid var(--card-background);
+  border-radius: 5px;
+  width: 39px;
+  height: 39px;
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+  &--icon {
+    fill: var(--error);
+  }
+
+  &:hover {
+    border-color: var(--error);
+  }
+}
+
+.heading-button {
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 2px solid var(--card-background);
+  background-color: var(--card-background);
+  color: var(--text);
+  font-family: "Commissioner", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+  &:hover {
+    border-color: var(--accent-green);
+  }
+}
+
+.exercise-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.exercise-question {
+  padding: 10px 10px;
+  border-radius: 5px;
+  border: 2px solid var(--text);
+  margin-bottom: 10px;
+  font-family: "Commissioner", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: var(--card-background);
+  color: var(--text);
+  transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    border-color: var(--subtext);
+    color: var(--subtext);
+  }
+
+  &::placeholder {
+    user-select: none;
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+
+  &--checkbox {
+    display: none;
+
+    &:checked ~ .option--checkbox__checkmark:after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:disabled ~ .option--checkbox__checkmark:after {
+      background-color: var(--subtext);
+    }
+
+    &:disabled ~ .option--checkbox__checkmark {
+      border-color: var(--subtext);
+      cursor: default;
+    }
+
+    &__checkmark {
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      border: 2px solid var(--text);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        background-color: var(--text);
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+    }
+  }
+
+  &--radio {
+    display: none;
+
+    &:checked ~ .option--radio__checkmark:before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:disabled ~ .option--radio__checkmark:before {
+      background-color: var(--subtext);
+    }
+
+    &:disabled ~ .option--radio__checkmark {
+      border-color: var(--subtext);
+      cursor: default;
+    }
+
+    &__checkmark {
+      display: inline-block;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      border: 2px solid var(--text);
+      border-radius: 100vmax;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 100vmax;
+        background-color: var(--text);
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+    }
+  }
+
+  &--input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid var(--text);
+    font-family: "Commissioner", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: var(--card-background);
+    color: var(--text);
+    margin-right: 5px;
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      border-color: var(--subtext);
+      color: var(--subtext);
+    }
+
+    &::placeholder {
+      user-select: none;
+    }
+  }
+
+  &--delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-background);
+    padding: 10px;
+    width: 43px;
+    height: 43px;
+    border: 2px solid var(--text);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+    &__icon {
+      fill: var(--text);
+      transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    &:disabled {
+      cursor: default;
+      border-color: var(--subtext);
+    }
+
+    &:disabled .option--delete__icon {
+      fill: var(--subtext);
+    }
+
+    &:hover:enabled {
+      background-color: var(--error);
+      border-color: var(--error);
+    }
+
+    &:hover:enabled .option--delete__icon {
+      fill: var(--text);
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+}
+
+.add-option {
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 2px solid var(--text);
+  background-color: var(--card-background);
+  color: var(--text);
+  font-family: "Commissioner", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+  &:hover {
+    border-color: var(--accent-green);
+  }
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 400px;
+  }
+}

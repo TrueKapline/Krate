@@ -25,8 +25,8 @@ export class DraggableListComponent {
     this.updateOrders();
   }
 
-  onClick() {
-    this.buttonClick.emit()
+  onClick(item: ListItem) {
+    this.buttonClick.emit(item);
   }
 
   private updateOrders() {

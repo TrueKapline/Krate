@@ -1,0 +1,16 @@
+<div
+  class="line-switcher"
+  [style.max-width]="maxWidth ? maxWidth + 'px' : null"
+>
+  @for (item of items; track item; let i = $index) {
+    <label class="switcher-element">
+      <input
+        type="radio"
+        name="radio"
+        [attr.checked]="i === 0 ? '' : null"
+        class="switcher-element--input"
+      />
+      <span class="switcher-element--name" (click)="onClick(item)">{{ item }}</span>
+    </label>
+  }
+</div>
