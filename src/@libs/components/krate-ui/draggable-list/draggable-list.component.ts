@@ -13,7 +13,7 @@ interface ListItem {
   styleUrl: './draggable-list.component.scss'
 })
 export class DraggableListComponent {
-  @Input() items!: ListItem[];
+  @Input() items: ListItem[] = [];
   @Input() withNumbers: boolean = true;
   @Input() withButton: boolean = true;
 

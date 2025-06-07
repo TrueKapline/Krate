@@ -1,0 +1,119 @@
+.wrapper {
+  width: 1000px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.edit__name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.name-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.project-name {
+  font-size: 48px;
+  box-sizing: content-box;
+  font-weight: 800;
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 23px;
+  }
+
+  &__edit {
+    fill: var(--subtext);
+  }
+}
+
+.edit__description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 5px;
+}
+
+.project-description {
+  font-size: 32px;
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 23px;
+  }
+
+  &__edit {
+    fill: var(--subtext);
+  }
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.field--desc {
+  text-align: left;
+  margin-bottom: 4px;
+  cursor: text;
+  width: 350px;
+  transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.input--field {
+  margin-bottom: 15px;
+}
+
+.name--error {
+  text-align: left;
+  color: var(--error);
+  display: none;
+  font-size: 15px;
+  width: 350px;
+  margin: 2px 0 12px;
+  transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.visible {
+  display: block;
+}
+
+.edit__theory,
+.edit__test {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &--heading {
+    font-size: 40px;
+    font-weight: 800;
+  }
+
+  &--button {
+    align-self: center;
+  }
+}
+
+.edit__lessons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &--heading {
+    font-size: 40px;
+    font-weight: 800;
+  }
+}

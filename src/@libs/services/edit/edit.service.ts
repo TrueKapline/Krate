@@ -8,7 +8,7 @@ import {
   EditedCourseDTO,
   ExerciseDTO,
   LessonContentDTO,
-  LessonsDTO,
+  LessonsDTO, ProjectLessonsDTO,
   ProjectsDTO
 } from './types/edit-course-dto.interface';
 import { RenameCourseDTO } from './types/rename-course-dto.interface';
@@ -40,7 +40,7 @@ export class EditService {
       );
   }
 
-  editCourse(name: string) {
+  getEditedCourse(name: string) {
     if (!this.token) {
       return throwError(() => new Error('Нет токена'));
     }
@@ -94,7 +94,7 @@ export class EditService {
     }
 
     return this.http
-      .post<ProjectsDTO[]>(`${this.backend}/newProject`,
+      .post<ProjectsDTO>(`${this.backend}/newProject`,
         { name, description, difficulty, course },
         { headers: { 'Authorization': this.token } }
       ).pipe(
@@ -152,7 +152,7 @@ export class EditService {
       );
   }
 
-  editLesson(lessonName: string, courseName: string) {
+  getEditedLesson(lessonName: string, courseName: string) {
     if (!this.token) {
       return throwError(() => new Error('Нет токена'));
     }
@@ -293,6 +293,134 @@ export class EditService {
     return this.http
       .post<ExerciseDTO>(`${this.backend}/saveExercise`,
         { question, exerciseId, options, correctAnswer },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  getEditedProject(projectName: string, courseName: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .get<ProjectsDTO>(`${this.backend}/editedProject`, {
+        params: { projectName, courseName },
+        headers: { 'Authorization': this.token }
+      }).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  renameProject(projectName: string, newProjectName: string, courseName: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post<ProjectsDTO>(`${this.backend}/renameProject`,
+        { projectName, newProjectName, courseName },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  changeProjectDescription(description: string, projectName: string, courseName: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post<ProjectsDTO>(`${this.backend}/changeProjectDescription`,
+        { description, projectName, courseName },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  deleteProject(projectName: string, courseName: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post(`${this.backend}/deleteProject`,
+        { projectName, courseName },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  getLessons(courseName: string, projectName: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .get<ProjectLessonsDTO>(`${this.backend}/getLessons`, {
+        params: { courseName, projectName },
+        headers: { 'Authorization': this.token }
+      }).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  updateProjectLessons(projectName: string, courseName: string, selectedLessons: string[]) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post(`${this.backend}/updateProjectLessons`,
+        { projectName, courseName, selectedLessons },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  updateProjectTask(projectName: string, courseName: string, task: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post(`${this.backend}/updateProjectTask`,
+        { projectName, courseName, task },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  updateProjectTest(projectName: string, courseName: string, test: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post(`${this.backend}/updateProjectTest`,
+        { projectName, courseName, test },
         { headers: { 'Authorization': this.token } }
       ).pipe(
         catchError((err: HttpErrorResponse) => {

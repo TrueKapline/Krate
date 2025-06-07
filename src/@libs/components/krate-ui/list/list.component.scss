@@ -1,0 +1,90 @@
+.option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+
+  &--radio {
+    display: none;
+
+    &:disabled ~ .option--radio__checkmark:before {
+      background-color: var(--subtext);
+    }
+
+    &:disabled ~ .option--radio__checkmark {
+      border-color: var(--subtext);
+      cursor: default;
+    }
+
+    &:checked ~ .option--radio__checkmark:before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__checkmark {
+      display: inline-block;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      border: 2px solid var(--text);
+      border-radius: 100vmax;
+      cursor: pointer;
+      transition: border-color 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 100vmax;
+        background-color: var(--text);
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+    }
+  }
+
+  &--checkbox {
+    display: none;
+
+    &:checked ~ .option--checkbox__checkmark:after {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    &:disabled ~ .option--checkbox__checkmark:after {
+      background-color: var(--subtext);
+    }
+
+    &:disabled ~ .option--checkbox__checkmark {
+      border-color: var(--subtext);
+      cursor: default;
+    }
+
+    &__checkmark {
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      border: 2px solid var(--text);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        background-color: var(--text);
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+      }
+    }
+  }
+}

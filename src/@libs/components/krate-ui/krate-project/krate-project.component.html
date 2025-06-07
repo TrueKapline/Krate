@@ -48,12 +48,14 @@
           label="Изменить проект"
           type="button"
           size="medium"
+          (click)="onProjectChange()"
         ></krate-button>
       } @else {
         <krate-button
           label="Выбрать проект"
           type="button"
           size="medium"
+          (click)="onProjectOpen()"
         ></krate-button>
       }
     </div>

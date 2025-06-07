@@ -60,7 +60,7 @@ export class EditLessonComponent implements OnInit {
       const lessonName = params['lessonName'];
       const courseName = params['courseName'];
 
-      this.editService.editLesson(lessonName, courseName).subscribe({
+      this.editService.getEditedLesson(lessonName, courseName).subscribe({
         next: (response) => {
           this.lessonName = response.title;
           this.courseName = courseName;

@@ -57,6 +57,7 @@
               [description]="project.description"
               [difficulty]="project.difficulty"
               [isPending]="false"
+              (changeProject)="onProjectClick($event)"
             ></krate-project>
           }
         } @else {
@@ -182,7 +183,7 @@
         ></krate-textarea>
 
         <krate-button
-          label="Изменить название"
+          label="Изменить описание"
           type="submit"
           size="large"
         ></krate-button>

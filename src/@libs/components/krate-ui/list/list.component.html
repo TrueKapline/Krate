@@ -1,0 +1,33 @@
+<div>
+  @if (type === 'radio') {
+    @for (option of items; track option) {
+      <label class="option">
+        <input
+          type="radio"
+          name="radioOptions"
+          [value]="option"
+          class="option--radio"
+          [(ngModel)]="checkedItems[option]"
+          (change)="onRadioChange(option)"
+        >
+        <span class="option--radio__checkmark"></span>
+        <span class="option--label">{{ option }}</span>
+      </label>
+    }
+  } @else {
+    @for (option of items; track option) {
+      <label class="option">
+        <input
+          type="checkbox"
+          name="checkboxOptions"
+          [value]="option"
+          class="option--checkbox"
+          [(ngModel)]="checkedItems[option]"
+          (change)="onCheckboxChange()"
+        >
+        <span class="option--checkbox__checkmark"></span>
+        <span class="option--label">{{ option }}</span>
+      </label>
+    }
+  }
+</div>

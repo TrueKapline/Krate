@@ -38,10 +38,10 @@ import { DraggableListComponent } from '../../krate-ui/draggable-list/draggable-
   styleUrl: './edit-course.component.scss'
 })
 export class EditCourseComponent implements OnInit {
-  @Input() courseName!: string;
-  @Input() courseDescription!: string;
-  @Input() projects!: ProjectsDTO[] | null;
-  @Input() lessons!: LessonsDTO[] | null;
+  @Input() courseName: string = '';
+  @Input() courseDescription: string = '';
+  @Input() projects: ProjectsDTO[] | null = [];
+  @Input() lessons: LessonsDTO[] | null = [];
 
   isModalOpen = false;
   modalType: 'name' | 'description' | 'project' | 'lesson' | 'delete' | null = null;
@@ -65,7 +65,7 @@ export class EditCourseComponent implements OnInit {
     this.route.params.subscribe(params => {
       const courseName = params['courseName'];
 
-      this.editService.editCourse(courseName).subscribe({
+      this.editService.getEditedCourse(courseName).subscribe({
         next: (response) => {
           this.courseName = response.name;
           this.courseDescription = response.description;
@@ -85,6 +85,10 @@ export class EditCourseComponent implements OnInit {
 
   onLessonsClick(item: LessonsDTO) {
     this.router.navigate([`/edit/course/${this.courseName.toLowerCase()}/lesson`, item.title.toLowerCase()]).then();
+  }
+
+  onProjectClick(name: string) {
+    this.router.navigate([`/edit/course/${this.courseName.toLowerCase()}/project`, name.toLowerCase()]).then();
   }
 
   onModalClose() {
@@ -123,11 +127,11 @@ export class EditCourseComponent implements OnInit {
       Validators.required,
       Validators.minLength(2)
     ]),
-  });
+  })
 
   editDescriptionForm = new FormGroup({
     description: new FormControl(''),
-  });
+  })
 
   newProjectForm = new FormGroup({
     projectName: new FormControl('', [
@@ -136,20 +140,20 @@ export class EditCourseComponent implements OnInit {
     ]),
     projectDesc: new FormControl(''),
     projectDiff: new FormControl('easy')
-  });
+  })
 
   newLessonForm = new FormGroup({
     lessonName: new FormControl('', [
       Validators.required,
       Validators.minLength(2)
     ])
-  });
+  })
 
   deleteCourseForm = new FormGroup({
     repeatName: new FormControl('', [
       this.nameValidator()
     ])
-  });
+  })
 
   nameValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -216,8 +220,10 @@ export class EditCourseComponent implements OnInit {
 
           this.editService.newProject(projectName!, projectDesc!, projectDiff!, this.courseName!).subscribe({
             next: (response) => {
-              this.projects = response;
               this.isModalOpen = false;
+              this.router.navigate(
+                [`/edit/course/${this.courseName.toLowerCase()}/project`, response.name.toLowerCase()]
+              ).then();
             }
           });
         }

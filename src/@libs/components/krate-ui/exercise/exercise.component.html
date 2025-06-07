@@ -26,6 +26,7 @@
             type="text"
             class="exercise-question"
             placeholder="Ваш вопрос"
+            autocomplete="off"
             [(ngModel)]="question"
             [disabled]="!isRedacting"
           >
@@ -46,6 +47,7 @@
                   type="text"
                   [(ngModel)]="option.userInput"
                   placeholder="Опция"
+                  autocomplete="off"
                   [disabled]="!isRedacting"
                   class="option--input"
                 >
@@ -95,6 +97,7 @@
             type="text"
             class="exercise-question"
             placeholder="Ваш вопрос"
+            autocomplete="off"
             [(ngModel)]="question"
             [disabled]="!isRedacting"
           >
@@ -115,6 +118,7 @@
                   type="text"
                   [(ngModel)]="option.userInput"
                   placeholder="Опция"
+                  autocomplete="off"
                   [disabled]="!isRedacting"
                   class="option--input"
                 >
