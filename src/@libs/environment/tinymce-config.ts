@@ -9,9 +9,10 @@ export const tinymceConfig = {
     'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace',
     'table', 'visualblocks', 'wordcount'
   ],
-  toolbar: 'undo redo | blocks | bold italic underline strikethrough | ' +
+  toolbar: 'undo redo | blocks | ' +
+    'bold italic underline strikethrough codesample | ' +
     'link image media table | ' +
-    'checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    'checklist numlist bullist indent outdent | removeformat',
   menu: {
     file: { title: 'Файл', items: 'newdocument restoredraft | preview | importword exportpdf exportword | print | deleteallconversations' },
     edit: { title: 'Правка', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },

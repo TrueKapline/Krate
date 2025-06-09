@@ -1,0 +1,52 @@
+:host {
+  align-self: flex-start;
+}
+
+.wrapper {
+  width: 1000px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.lesson-name {
+  font-size: 48px;
+  box-sizing: content-box;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.go-back {
+  cursor: pointer;
+  color: var(--subtext);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.switcher {
+  display: block;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 400px;
+  }
+
+  .lesson-name {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .wrapper {
+    width: 300px;
+  }
+}
+

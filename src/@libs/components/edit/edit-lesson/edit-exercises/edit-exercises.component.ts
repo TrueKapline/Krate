@@ -41,7 +41,6 @@ export class EditExercisesComponent implements OnChanges {
       this.editService.getExercises(this.lessonName, this.courseName).subscribe({
         next: (response) => {
           this.exercises.set(response);
-          console.log(response);
         }
       });
     }

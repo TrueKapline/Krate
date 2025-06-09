@@ -5,6 +5,7 @@ import { PluralizePipe } from './model/plural-pipe';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { StudyService } from '../../../services/study/study.service';
 
 @Component({
   selector: 'krate-course',
@@ -18,17 +19,27 @@ import { Router } from '@angular/router';
   styleUrl: './krate-course.component.scss'
 })
 export class KrateCourseComponent {
-  @Input() name!: string;
-  @Input() description!: string;
-  @Input() projects!: number;
-  @Input() isPending!: boolean;
+  @Input() name: string = '';
+  @Input() description: string = '';
+  @Input() projects: number = 0;
+  @Input() isPending: boolean = false;
 
   private authService = inject(AuthService);
   private router = inject(Router);
+  private studyService = inject(StudyService);
 
-  role = this.authService.role;
+  role = this.authService.role();
+  userEmail = this.authService.userEmail();
 
-  onCourseSelected(courseName: string) {
+  onRedactClick(courseName: string) {
     this.router.navigate(['/edit/course', courseName.toLowerCase()]).then();
+  }
+
+  onOpenClick(courseName: string) {
+    this.studyService.selectCourse(this.userEmail!, courseName).subscribe({
+      next: () => {
+        this.router.navigate(['/study-plan']).then();
+      }
+    });
   }
 }

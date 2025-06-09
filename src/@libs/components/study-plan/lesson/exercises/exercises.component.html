@@ -1,0 +1,41 @@
+@for (exercise of exercises; track exercise; let i = $index) {
+  <krate-card class="exercise">
+    <div class="wrapper">
+      <p class="question">{{ exercise.question }}</p>
+      @if (exercise.completed) {
+        <list
+          [items]="optionsLists[i]"
+          [selectedItems]="correctList[i]"
+          [type]="exercise.type === 'single' ? 'radio' : 'checkbox'"
+          (onSelect)="onSelect($event, i)"
+          class="options"
+        ></list>
+      } @else {
+        <list
+          [items]="optionsLists[i]"
+          [type]="exercise.type === 'single' ? 'radio' : 'checkbox'"
+          (onSelect)="onSelect($event, i)"
+          class="options"
+        ></list>
+      }
+      @if (answerStatuses[i] === 'correct' || exercise.completed) {
+        <div class="correct" [class.no-margin]="exercise.completed">
+          <p class="correct--msg">Верно!</p>
+        </div>
+      }
+      @if (answerStatuses[i] === 'wrong') {
+        <div class="wrong">
+          <p class="wrong--msg">Неверно! Попробуйте еще раз.</p>
+        </div>
+      }
+      @if (!exercise.completed) {
+        <krate-button
+          label="Ответить"
+          type="button"
+          size="medium"
+          (click)="checkAnswer(i)"
+        ></krate-button>
+      }
+    </div>
+  </krate-card>
+}

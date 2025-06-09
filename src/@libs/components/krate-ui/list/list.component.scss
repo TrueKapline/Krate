@@ -1,6 +1,5 @@
 .option {
   display: flex;
-  align-items: center;
   width: 100%;
   margin-bottom: 15px;
 
@@ -23,7 +22,7 @@
     &__checkmark {
       display: inline-block;
       position: relative;
-      width: 16px;
+      min-width: 16px;
       height: 16px;
       margin-right: 10px;
       border: 2px solid var(--text);
@@ -65,7 +64,7 @@
     &__checkmark {
       display: inline-block;
       position: relative;
-      width: 20px;
+      min-width: 20px;
       height: 20px;
       margin-right: 10px;
       border: 2px solid var(--text);

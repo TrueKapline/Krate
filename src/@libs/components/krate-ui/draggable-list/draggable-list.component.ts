@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 
-interface ListItem {
+export interface ListItem {
+  id?: number;
   order: number;
   title: string;
+  disabled?: boolean;
 }
 
 @Component({
@@ -16,6 +18,7 @@ export class DraggableListComponent {
   @Input() items: ListItem[] = [];
   @Input() withNumbers: boolean = true;
   @Input() withButton: boolean = true;
+  @Input() draggable: boolean = true;
 
   @Output() rearrange = new EventEmitter();
   @Output() buttonClick = new EventEmitter();

@@ -1,7 +1,6 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CardComponent } from "../card/card.component";
 import { KrateButtonComponent } from "../krate-button/krate-button.component";
-import { AuthService } from '../../../services/auth/auth.service';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 
 @Component({
@@ -19,13 +18,10 @@ export class KrateProjectComponent {
   @Input() description: string = '';
   @Input() difficulty: string = '';
   @Input() isPending: boolean = false;
+  @Input() isRedacting: boolean = false;
 
   @Output() changeProject = new EventEmitter();
   @Output() openProject = new EventEmitter();
-
-  private authService = inject(AuthService);
-
-  role = this.authService.role;
 
   onProjectChange() {
     this.changeProject.emit(this.name);

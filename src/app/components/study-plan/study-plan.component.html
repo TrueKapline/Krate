@@ -1,1 +1,75 @@
-<p>study-plan works!</p>
+@if (!isLoading) {
+  <div class="progress--wrapper">
+    @if (progress()?.progress) {
+      <h1 class="projects-heading">{{ progress()?.progress?.currentProject?.name }}</h1>
+      <p class="projects-description">{{ progress()?.progress?.currentProject?.description }}</p>
+
+      <h2 class="projects-heading">Уроки</h2>
+      <draggable-list
+        [items]="lessons"
+        [withNumbers]="true"
+        [withButton]="true"
+        [draggable]="false"
+        (buttonClick)="onLessonsClick($event)"
+      ></draggable-list>
+
+    } @else if (progress()?.course) {
+      <h1 class="course-name">{{ progress()?.course?.name }}</h1>
+      <p class="course-description">{{ progress()?.course?.description }}</p>
+
+      <h2 class="projects-heading">Проекты</h2>
+      <div class="projects-grid">
+        @for (project of progress()?.projects; track project) {
+          <krate-project
+            [name]="project.name"
+            [description]="project.description"
+            [difficulty]="project.difficulty"
+            (openProject)="onProjectSelect($event)"
+          ></krate-project>
+        }
+      </div>
+    } @else {
+      <div class="course--empty">
+        <h1 class="course--empty__heading">Курс не выбран</h1>
+        <p class="course--empty__text">
+          Начните учиться, выбрав любой понравившийся вам курс <a (click)="onLinkClick()" class="link">здесь</a>
+        </p>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="progress--wrapper">
+    <div class="loader">
+      <ngx-skeleton-loader
+        [theme]="{ height: '50px', width: '250px', 'background-color': 'var(--loader-color)' }"
+        animation="pulse"
+      ></ngx-skeleton-loader>
+    </div>
+
+    <div class="loader">
+      <ngx-skeleton-loader
+        [theme]="{ height: '30px', 'background-color': 'var(--loader-color)' }"
+        [count]="3"
+        animation="pulse"
+      ></ngx-skeleton-loader>
+    </div>
+
+    <div class="course-projects">
+      <div class="loader">
+        <ngx-skeleton-loader
+          [theme]="{ height: '50px', width: '250px', 'background-color': 'var(--loader-color)' }"
+          animation="pulse"
+        ></ngx-skeleton-loader>
+      </div>
+
+      <div class="projects-grid">
+        @for (item of [1,2,3]; track item) {
+          <krate-project
+            [isPending]="true"
+          ></krate-project>
+        }
+      </div>
+    </div>
+  </div>
+}
+

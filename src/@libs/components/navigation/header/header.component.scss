@@ -7,7 +7,7 @@
   z-index: 1000;
   display: flex;
   background-color: var(--header-background);
-  padding: 15px 30px;
+  padding: 15px;
   justify-content: space-between;
 }
 
@@ -15,7 +15,7 @@
   display: flex;
   flex-shrink: 0;
   user-select: none;
-  gap: 14px;
+  gap: 15px;
   align-items: center;
 
   &--link {
@@ -74,7 +74,7 @@
 
   &--icon {
     fill: var(--header-subtext);
-    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);;
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
   }
 }
 

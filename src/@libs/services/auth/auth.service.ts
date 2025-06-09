@@ -11,8 +11,12 @@ import { ProfileDTO } from './types/profile-dto.interface';
 })
 export class AuthService {
   private readonly backend = environment.apiUrl;
+
   private _role = signal<string | null>(null);
   public role: Signal<string | null> = this._role.asReadonly();
+
+  private _userEmail = signal<string | null>(null);
+  public userEmail: Signal<string | null> = this._userEmail.asReadonly();
 
   constructor(private http: HttpClient) { }
 
@@ -65,6 +69,7 @@ export class AuthService {
       }).pipe(
         tap((user) => {
           this._role.set(user.role);
+          this._userEmail.set(user.email);
           sessionStorage.setItem('role', user.role)
         }),
         catchError(() => of(null))

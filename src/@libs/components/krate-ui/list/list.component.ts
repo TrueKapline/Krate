@@ -16,9 +16,11 @@ export class ListComponent implements OnChanges {
 
   @Output() onSelect = new EventEmitter();
 
+  groupName: string = '';
   checkedItems: { [key: string]: boolean } = {};
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.groupName = `list-${Date.now()}`;
     if (changes['items'] || changes['selectedValues'] || changes['type']) {
       this.initializeCheckedItems();
     }

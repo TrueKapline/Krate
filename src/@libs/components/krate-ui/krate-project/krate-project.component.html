@@ -43,7 +43,7 @@
         <p class="project--description">{{ description }}</p>
       </div>
 
-      @if (role() === 'admin') {
+      @if (isRedacting) {
         <krate-button
           label="Изменить проект"
           type="button"

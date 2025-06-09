@@ -11,18 +11,18 @@
   align-items: center;
   gap: 3px;
 
-  &__button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    height: 17px;
-  }
-
   &__heading {
     margin-bottom: 7px;
     font-size: 32px;
     font-weight: 800;
     transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 17px;
   }
 
   &__edit {

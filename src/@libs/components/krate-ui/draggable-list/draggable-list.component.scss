@@ -57,6 +57,19 @@
   gap: 12px;
 }
 
+.disabled {
+  color: var(--subtext);
+}
+
+.disabled-button {
+  color: var(--subtext);
+  cursor: default;
+
+  &:hover {
+    border: 2px solid var(--card-background);
+  }
+}
+
 .order-badge {
   width: 25px;
   height: 25px;

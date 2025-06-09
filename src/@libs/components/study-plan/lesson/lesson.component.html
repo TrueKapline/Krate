@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <a class="go-back" (click)="goBack()">⇐ Назад</a>
+  <h1 class="lesson-name">{{ lessonName }}</h1>
+
+  <line-switcher
+    [items]="switcherItems"
+    (selected)="onSwitcherClick($event)"
+    class="switcher"
+  ></line-switcher>
+
+  @if (currentPage === 'Урок') {
+    <theory
+      [content]="lessonContent"
+    ></theory>
+  } @else {
+    <exercises
+      [exercises]="lessonExercises"
+      [lessonName]="lessonName"
+    ></exercises>
+  }
+</div>

@@ -4,10 +4,10 @@
       <label class="option">
         <input
           type="radio"
-          name="radioOptions"
+          [name]="groupName"
           [value]="option"
           class="option--radio"
-          [(ngModel)]="checkedItems[option]"
+          [(ngModel)]="selectedItems"
           (change)="onRadioChange(option)"
         >
         <span class="option--radio__checkmark"></span>

@@ -1,29 +1,53 @@
 <div cdkDropList class="drag-list" (cdkDropListDropped)="drop($event)">
-  @for (item of items; track item.order) {
-    <div
-      cdkDrag
-      cdkDragLockAxis="y"
-      cdkDragBoundary=".drag-list"
-      class="drag-item"
-    >
-      <div class="drag-item--content">
-        <div cdkDragHandle class="drag-handle">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="drag-handle--container">
-            <path d="M9.08282 16.8753C9.08282 18.1354 8.07026 19.1667 6.83304 19.1667C5.59582 19.1667 4.58325 18.1354 4.58325 16.8753C4.58325 15.6152 5.59582 14.5839 6.83304 14.5839C8.07026 14.5839 9.08282 15.6152 9.08282 16.8753ZM6.83304 7.70865C5.59582 7.70865 4.58325 8.73994 4.58325 10C4.58325 11.2601 5.59582 12.2914 6.83304 12.2914C8.07026 12.2914 9.08282 11.2601 9.08282 10C9.08282 8.73994 8.07026 7.70865 6.83304 7.70865ZM6.83304 0.833374C5.59582 0.833374 4.58325 1.86467 4.58325 3.12477C4.58325 4.38487 5.59582 5.41616 6.83304 5.41616C8.07026 5.41616 9.08282 4.38487 9.08282 3.12477C9.08282 1.86467 8.07026 0.833374 6.83304 0.833374ZM13.5835 5.41616C14.8207 5.41616 15.8333 4.38487 15.8333 3.12477C15.8333 1.86467 14.8207 0.833374 13.5835 0.833374C12.3462 0.833374 11.3337 1.86467 11.3337 3.12477C11.3337 4.38487 12.3462 5.41616 13.5835 5.41616ZM13.5835 7.70862C12.3462 7.70862 11.3337 8.73991 11.3337 10C11.3337 11.2601 12.3462 12.2914 13.5835 12.2914C14.8207 12.2914 15.8333 11.2601 15.8333 10C15.8333 8.73991 14.8207 7.70862 13.5835 7.70862ZM13.5835 14.5839C12.3462 14.5839 11.3337 15.6152 11.3337 16.8753C11.3337 18.1354 12.3462 19.1667 13.5835 19.1667C14.8207 19.1667 15.8333 18.1354 15.8333 16.8753C15.8333 15.6152 14.8207 14.5839 13.5835 14.5839Z"/>
-          </svg>
+  @if (draggable) {
+    @for (item of items; track item) {
+      <div
+        cdkDrag
+        cdkDragLockAxis="y"
+        cdkDragBoundary=".drag-list"
+        class="drag-item"
+      >
+        <div class="drag-item--content">
+          <div cdkDragHandle class="drag-handle">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="drag-handle--container">
+              <path d="M9.08282 16.8753C9.08282 18.1354 8.07026 19.1667 6.83304 19.1667C5.59582 19.1667 4.58325 18.1354 4.58325 16.8753C4.58325 15.6152 5.59582 14.5839 6.83304 14.5839C8.07026 14.5839 9.08282 15.6152 9.08282 16.8753ZM6.83304 7.70865C5.59582 7.70865 4.58325 8.73994 4.58325 10C4.58325 11.2601 5.59582 12.2914 6.83304 12.2914C8.07026 12.2914 9.08282 11.2601 9.08282 10C9.08282 8.73994 8.07026 7.70865 6.83304 7.70865ZM6.83304 0.833374C5.59582 0.833374 4.58325 1.86467 4.58325 3.12477C4.58325 4.38487 5.59582 5.41616 6.83304 5.41616C8.07026 5.41616 9.08282 4.38487 9.08282 3.12477C9.08282 1.86467 8.07026 0.833374 6.83304 0.833374ZM13.5835 5.41616C14.8207 5.41616 15.8333 4.38487 15.8333 3.12477C15.8333 1.86467 14.8207 0.833374 13.5835 0.833374C12.3462 0.833374 11.3337 1.86467 11.3337 3.12477C11.3337 4.38487 12.3462 5.41616 13.5835 5.41616ZM13.5835 7.70862C12.3462 7.70862 11.3337 8.73991 11.3337 10C11.3337 11.2601 12.3462 12.2914 13.5835 12.2914C14.8207 12.2914 15.8333 11.2601 15.8333 10C15.8333 8.73991 14.8207 7.70862 13.5835 7.70862ZM13.5835 14.5839C12.3462 14.5839 11.3337 15.6152 11.3337 16.8753C11.3337 18.1354 12.3462 19.1667 13.5835 19.1667C14.8207 19.1667 15.8333 18.1354 15.8333 16.8753C15.8333 15.6152 14.8207 14.5839 13.5835 14.5839Z"/>
+            </svg>
+          </div>
+
+          <div class="item-content" [class.disabled]="item.disabled">
+            @if (withNumbers) {
+              <span class="order-badge">{{ item.order }}</span>
+            }
+            {{ item.title }}
+          </div>
         </div>
 
-        <div class="item-content">
-          @if (withNumbers) {
-            <span class="order-badge">{{ item.order }}</span>
-          }
-          {{ item.title }}
-        </div>
+        @if (withButton) {
+          <button class="drag-item--button" (click)="onClick(item)" [class.disabled]="item.disabled">Открыть</button>
+        }
       </div>
+    }
+  } @else {
+    @for (item of items; track item) {
+      <div class="drag-item">
+        <div class="drag-item--content">
+          <div class="item-content" [class.disabled]="item.disabled">
+            @if (withNumbers) {
+              <span class="order-badge">{{ item.order }}</span>
+            }
+            {{ item.title }}
+          </div>
+        </div>
 
-      @if (withButton) {
-        <button class="drag-item--button" (click)="onClick(item)">Открыть</button>
-      }
-    </div>
+        @if (withButton) {
+          <button
+            class="drag-item--button"
+            (click)="onClick(item)"
+            [class.disabled-button]="item.disabled"
+            [disabled]="item.disabled"
+          >Открыть</button>
+        }
+      </div>
+    }
   }
 </div>

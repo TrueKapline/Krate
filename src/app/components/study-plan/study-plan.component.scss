@@ -1,0 +1,105 @@
+:host {
+  align-self: flex-start;
+}
+
+.progress--wrapper {
+  width: 1132px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.course-name,
+.projects-heading {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.course-description,
+.projects-description {
+  font-size: 32px;
+  margin-bottom: 25px;
+  transition: font-size 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+  transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.course--empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  &__heading {
+    font-size: 40px;
+  }
+
+  &__text {
+    font-size: 20px;
+  }
+}
+
+.link {
+  cursor: pointer;
+  color: var(--accent-green);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.loader {
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .progress--wrapper {
+    width: 748px;
+  }
+
+  .course-description {
+    font-size: 24px;
+  }
+
+  .course-name,
+  .projects-heading {
+    font-size: 42px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .progress--wrapper {
+    width: 364px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .progress--wrapper {
+    width: 344px;
+  }
+
+  .course-description {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .progress--wrapper {
+    width: 294px;
+  }
+}

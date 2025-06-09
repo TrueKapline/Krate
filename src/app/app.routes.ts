@@ -16,6 +16,8 @@ import { EditCourseComponent } from '../@libs/components/edit/edit-course/edit-c
 import { EditComponent } from './components/edit/edit.component';
 import { EditLessonComponent } from '../@libs/components/edit/edit-lesson/edit-lesson.component';
 import { EditProjectComponent } from '../@libs/components/edit/edit-project/edit-project.component';
+import { LessonComponent } from '../@libs/components/study-plan/lesson/lesson.component';
+import { ProjectComponent } from '../@libs/components/study-plan/project/project.component';
 
 export const routes: Routes = [
   {
@@ -43,6 +45,8 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'courses', component: CoursesComponent },
       { path: 'study-plan', component: StudyPlanComponent },
+      { path: 'study-plan/lesson/:lessonName', component: LessonComponent },
+      { path: 'study-plan/project/:projectName', component: ProjectComponent },
       {
         path: 'edit',
         component: EditComponent,

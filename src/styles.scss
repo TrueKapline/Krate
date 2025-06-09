@@ -30,10 +30,21 @@ html, body {
 
   --loader-color: #ececec;
 
+  --code-highlight: #ebebeb;
+  --code-border: #e0e0e0;
+  --code-inline-color: #166445;
+
   --modal-background: rgba(0, 0, 0, 0.5);
   --close-background: #F4F4F6;
   --close-content: #8F8F8F;
   --close-content-hover: #333333;
+
+  --result-correct-bg: #ABEDD3;
+  --result-correct-border: #2DCC8C;
+  --result-correct-text: #156545;
+  --result-wrong-bg: #F9B5B4;
+  --result-wrong-border: #F25F5C;
+  --result-wrong-text: #710B09;
 
   --header-background: #222222;
   --header-accent: #2DCC8C;
@@ -63,6 +74,10 @@ html, body {
   --logo-background: #F4F4F6;
 
   --loader-color: #333333;
+
+  --code-highlight: #1F1F1F;
+  --code-border: #333333;
+  --code-inline-color: #1D865C;
 
   --modal-background: rgba(0, 0, 0, 0.5);
   --close-background: #2A2A2A;

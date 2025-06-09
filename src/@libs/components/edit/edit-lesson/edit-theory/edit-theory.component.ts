@@ -30,17 +30,46 @@ export class EditTheoryComponent implements OnChanges {
     if (this.lessonName && this.courseName) {
       this.editService.getLessonContent(this.lessonName, this.courseName).subscribe({
         next: (response) => {
-          this.content.set(response.content ? response.content : 'Начните писать здесь');
+          if (response.content) {
+            const formatted = this.unformatPreCodeBlocks(response.content);
+            this.content.set(formatted);
+          } else {
+            this.content.set('Начните писать здесь');
+          }
         }
       });
     }
   }
 
   saveContent() {
-    this.editService.updateLessonContent(this.lessonName, this.courseName, this.content()).subscribe({
-      next: (response) => {
-        console.log(response.content);
+    const formatted = this.formatPreCodeBlocks(this.content());
+
+    this.editService.updateLessonContent(this.lessonName, this.courseName, formatted).subscribe({
+      next: () => {
+        // console.log(response.content);
       }
     });
+  }
+
+  formatPreCodeBlocks(rawHtml: string): string {
+    return rawHtml.replace(
+      /<pre class="language-python"><code>([\s\S]*?)<\/code><\/pre>/g,
+      (match: string, codeContent: string): string => {
+        const lines = codeContent.split('\n');
+        const wrappedLines = lines.map((line: string) => `<div>${line}</div>`).join('');
+        return `<pre><code>${wrappedLines}</code></pre>`;
+      }
+    );
+  }
+
+  unformatPreCodeBlocks(formattedHtml: string): string {
+    return formattedHtml.replace(
+      /<pre><code>([\s\S]*?)<\/code><\/pre>/g,
+      (match: string, codeContent: string): string => {
+        const lines = Array.from(codeContent.matchAll(/<div>(.*?)<\/div>/g), m => m[1]);
+        const joined = lines.join('\n');
+        return `<pre class="language-python"><code>${joined}</code></pre>`;
+      }
+    );
   }
 }
