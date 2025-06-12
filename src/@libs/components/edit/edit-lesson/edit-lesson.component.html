@@ -20,11 +20,12 @@
 
   <line-switcher
     [items]="switcherItems"
-    (selected)="onSwitcherClick($event)"
+    [checkedItem]="currentPage()"
+    (checkedItemChange)="currentPage.set($event)"
     class="switcher"
   ></line-switcher>
 
-  @if (currentPage === 'Урок') {
+  @if (currentPage() === 'Урок') {
     <edit-theory
       [lessonName]="lessonName"
       [courseName]="courseName"

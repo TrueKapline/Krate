@@ -5,6 +5,8 @@
 .wrapper {
   width: 1000px;
   transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .lesson-name {
@@ -17,6 +19,7 @@
 .go-back {
   cursor: pointer;
   color: var(--subtext);
+  margin-bottom: 10px;
 
   &:hover {
     text-decoration: underline;
@@ -26,6 +29,10 @@
 .switcher {
   display: block;
   margin-bottom: 20px;
+}
+
+.practice-button {
+  align-self: center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -41,6 +48,7 @@
 
   .lesson-name {
     text-align: center;
+    font-size: 32px;
   }
 }
 

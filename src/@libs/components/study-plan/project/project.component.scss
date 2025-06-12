@@ -1,0 +1,85 @@
+:host {
+  align-self: flex-start;
+}
+
+.wrapper {
+  width: 1000px;
+  transition: width 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.go-back {
+  cursor: pointer;
+  color: var(--subtext);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.project-name {
+  font-size: 48px;
+  box-sizing: content-box;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.editor {
+  display: block;
+  margin-bottom: 25px;
+}
+
+.correct {
+  background-color: var(--result-correct-bg);
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 2px solid var(--result-correct-border);
+  margin-bottom: 20px;
+
+  &--msg {
+    font-weight: 500;
+    color: var(--result-correct-text);
+  }
+}
+
+.wrong {
+  background-color: var(--result-wrong-bg);
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 2px solid var(--result-wrong-border);
+  margin-bottom: 20px;
+
+  &--msg {
+    font-weight: 500;
+    color: var(--result-wrong-text);
+  }
+
+  &--msg:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: 400px;
+  }
+
+  .project-name {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .wrapper {
+    width: 300px;
+  }
+}

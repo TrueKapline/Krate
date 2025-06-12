@@ -9,10 +9,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class LineSwitcherComponent {
   @Input() items: string[] = [];
   @Input() maxWidth?: number;
+  @Input() checkedItem: string = '';
 
-  @Output() selected = new EventEmitter();
+  @Output() checkedItemChange = new EventEmitter<string>();
 
-  onClick(item: string) {
-    this.selected.emit(item);
+  onChange(item: string) {
+    this.checkedItem = item;
+    this.checkedItemChange.emit(item);
   }
 }

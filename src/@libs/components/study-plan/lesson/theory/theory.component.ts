@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
@@ -7,14 +7,17 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './theory.component.html',
   styleUrl: './theory.component.scss'
 })
-export class TheoryComponent {
+export class TheoryComponent implements OnChanges {
   @Input() content: string = '';
+  cachedSafeContent: SafeHtml = '';
 
   private sanitizer = inject(DomSanitizer);
 
-  get safeContent(): SafeHtml {
-    const processedContent = this.processContent(this.content);
-    return this.sanitizer.bypassSecurityTrustHtml(processedContent);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['content']) {
+      const processedContent = this.processContent(this.content);
+      this.cachedSafeContent = this.sanitizer.bypassSecurityTrustHtml(processedContent);
+    }
   }
 
   private processContent(content: string): string {

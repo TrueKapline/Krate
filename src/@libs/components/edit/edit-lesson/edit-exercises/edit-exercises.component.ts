@@ -65,11 +65,7 @@ export class EditExercisesComponent implements OnChanges {
       ...(filtered.length === 0 ? [options.selectedOption ?? ''] : [])
     ];
 
-    this.editService.saveExercise(question, id, options.options, correctAnswer).subscribe({
-      next: (response) => {
-        console.log(response);
-      }
-    });
+    this.editService.saveExercise(question, id, options.options, correctAnswer).subscribe();
   }
 
   openModal() {

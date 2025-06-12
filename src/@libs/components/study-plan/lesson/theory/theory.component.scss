@@ -82,4 +82,20 @@
       line-height: 1.5;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    p {
+      font-size: 16px;
+    }
+
+    pre {
+      font-size: 14px;
+    }
+
+    ul, ol {
+      li {
+        font-size: 16px;
+      }
+    }
+  }
 }

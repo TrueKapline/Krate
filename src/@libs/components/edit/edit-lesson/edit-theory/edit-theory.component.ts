@@ -44,11 +44,7 @@ export class EditTheoryComponent implements OnChanges {
   saveContent() {
     const formatted = this.formatPreCodeBlocks(this.content());
 
-    this.editService.updateLessonContent(this.lessonName, this.courseName, formatted).subscribe({
-      next: () => {
-        // console.log(response.content);
-      }
-    });
+    this.editService.updateLessonContent(this.lessonName, this.courseName, formatted).subscribe();
   }
 
   formatPreCodeBlocks(rawHtml: string): string {

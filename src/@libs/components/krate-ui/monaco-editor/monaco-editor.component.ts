@@ -38,15 +38,17 @@ export class MonacoEditorComponent implements OnInit, OnDestroy {
   private onTouched: () => void = () => {};
 
   async ngOnInit() {
-    const theme = this.themeService.currentTheme() === 'light' ? 'vs' : 'vs-dark'
+    const theme = this.themeService.getEffectiveTheme();
 
     await loader.init();
 
     this.editor = (window as any).monaco.editor.create(this.container.nativeElement, {
       value: this.value,
       language: this.language,
-      theme: theme,
-      automaticLayout: true
+      theme: theme === 'light' ? 'vs' : 'vs-dark',
+      automaticLayout: true,
+      minimap: { enabled: false },
+      scrollBeyondLastLine: false,
     });
 
     this.editor.onDidChangeModelContent(() => {

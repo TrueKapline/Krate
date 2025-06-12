@@ -81,7 +81,6 @@ export class ProfileComponent implements OnInit {
 
       this.editService.newCourse(name!, description!).subscribe({
         next: (response) => {
-          console.log(response.name, response.description);
           this.router.navigate(['/edit/course', response.name]).then();
         }
       })

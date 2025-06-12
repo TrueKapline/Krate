@@ -37,4 +37,11 @@ export class ThemeService {
       this.renderer.addClass(document.body, `${theme}-theme`);
     }
   }
+
+  getEffectiveTheme() {
+    if (this.currentTheme() === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return this.currentTheme();
+  }
 }

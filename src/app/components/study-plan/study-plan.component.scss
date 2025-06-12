@@ -42,7 +42,9 @@
   }
 
   &__text {
-    font-size: 20px;
+    text-align: center;
+    font-size: 32px;
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
   }
 }
 
@@ -68,13 +70,16 @@
     width: 748px;
   }
 
-  .course-description {
+  .course-description,
+  .projects-description,
+  .course--empty__text {
     font-size: 24px;
   }
 
   .course-name,
-  .projects-heading {
-    font-size: 42px;
+  .projects-heading,
+  .course--empty__heading {
+    font-size: 28px;
   }
 }
 
@@ -89,11 +94,19 @@
 }
 
 @media screen and (max-width: 425px) {
+  .course-name,
+  .projects-heading,
+  .course--empty__heading {
+    text-align: center;
+  }
+
   .progress--wrapper {
     width: 344px;
   }
 
-  .course-description {
+  .course-description,
+  .projects-description,
+  .course--empty__text {
     font-size: 18px;
   }
 }

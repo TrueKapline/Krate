@@ -73,7 +73,14 @@ export class EditProjectComponent implements OnInit {
           this.projectName = response.name;
           this.projectDescription = response.description;
           this.courseName = courseName;
-          this.projectTask.set(response.task ? response.task : 'Начните писать здесь');
+
+          if (response.task) {
+            const formatted = this.unformatPreCodeBlocks(response.task);
+            this.projectTask.set(formatted);
+          } else {
+            this.projectTask.set('Начните писать здесь');
+          }
+
           this.projectTest.set(response.test ? response.test : '# Напишите тест\n');
         }
       });
@@ -195,11 +202,31 @@ export class EditProjectComponent implements OnInit {
   }
 
   saveTask() {
-    this.editService.updateProjectTask(this.projectName, this.courseName, this.projectTask()).subscribe({
-      next: (response) => {
-        console.log(response);
+    const formatted = this.formatPreCodeBlocks(this.projectTask());
+
+    this.editService.updateProjectTask(this.projectName, this.courseName, formatted).subscribe();
+  }
+
+  formatPreCodeBlocks(rawHtml: string): string {
+    return rawHtml.replace(
+      /<pre class="language-python"><code>([\s\S]*?)<\/code><\/pre>/g,
+      (match: string, codeContent: string): string => {
+        const lines = codeContent.split('\n');
+        const wrappedLines = lines.map((line: string) => `<div>${line}</div>`).join('');
+        return `<pre><code>${wrappedLines}</code></pre>`;
       }
-    });
+    );
+  }
+
+  unformatPreCodeBlocks(formattedHtml: string): string {
+    return formattedHtml.replace(
+      /<pre><code>([\s\S]*?)<\/code><\/pre>/g,
+      (match: string, codeContent: string): string => {
+        const lines = Array.from(codeContent.matchAll(/<div>(.*?)<\/div>/g), m => m[1]);
+        const joined = lines.join('\n');
+        return `<pre class="language-python"><code>${joined}</code></pre>`;
+      }
+    );
   }
 
   itemSelect(item: { items: string[], selectedItems: string[] }) {
@@ -211,10 +238,6 @@ export class EditProjectComponent implements OnInit {
   }
 
   saveTest() {
-    this.editService.updateProjectTest(this.projectName, this.courseName, this.projectTest()).subscribe({
-      next: (response) => {
-        console.log(response);
-      }
-    });
+    this.editService.updateProjectTest(this.projectName, this.courseName, this.projectTest()).subscribe();
   }
 }

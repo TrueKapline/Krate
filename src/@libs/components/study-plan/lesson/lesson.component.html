@@ -1,21 +1,63 @@
-<div class="wrapper">
-  <a class="go-back" (click)="goBack()">⇐ Назад</a>
-  <h1 class="lesson-name">{{ lessonName }}</h1>
+@if (!isPending) {
+  <div class="wrapper">
+    <a class="go-back" (click)="goBack()">⇐ Назад</a>
+    <h1 class="lesson-name">{{ lessonName }}</h1>
 
-  <line-switcher
-    [items]="switcherItems"
-    (selected)="onSwitcherClick($event)"
-    class="switcher"
-  ></line-switcher>
+    <line-switcher
+      [items]="switcherItems"
+      [checkedItem]="currentPage()"
+      (checkedItemChange)="currentPage.set($event)"
+      class="switcher"
+    ></line-switcher>
 
-  @if (currentPage === 'Урок') {
-    <theory
-      [content]="lessonContent"
-    ></theory>
-  } @else {
-    <exercises
-      [exercises]="lessonExercises"
-      [lessonName]="lessonName"
-    ></exercises>
-  }
-</div>
+    @if (currentPage() === 'Урок') {
+      <theory
+        [content]="lessonContent"
+      ></theory>
+
+      <krate-button
+        label="Начать практиковаться"
+        type="submit"
+        size="large"
+        class="practice-button"
+        (click)="onClick()"
+      ></krate-button>
+    } @else {
+      <exercises
+        [exercises]="lessonExercises"
+        [lessonName]="lessonName"
+      ></exercises>
+    }
+  </div>
+} @else {
+  <div class="wrapper">
+    <ngx-skeleton-loader
+      [theme]="{ height: '20px', width: '100px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      [theme]="{ height: '50px', width: '400px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      [theme]="{ height: '50px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader
+      [theme]="{ height: '40px', width: '400px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader
+      [theme]="{ 'background-color': 'var(--loader-color)' }"
+      [count]="10"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader
+      [theme]="{ height: '55px', width: '300px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+  </div>
+}

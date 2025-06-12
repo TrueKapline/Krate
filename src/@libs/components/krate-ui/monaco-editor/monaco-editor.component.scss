@@ -2,3 +2,9 @@
   height: 400px;
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .editor-container {
+    height: 200px;
+  }
+}

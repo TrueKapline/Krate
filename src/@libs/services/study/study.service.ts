@@ -6,6 +6,7 @@ import { catchError, throwError } from 'rxjs';
 import { ProgressDTO } from './types/course-dto.interface';
 import { LessonContentDTO } from './types/lesson-content-dto.interface';
 import { ResultDTO } from './types/result-dto.interface';
+import { ProjectContentDTO, TestResultDTO } from './types/project-content-dto.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +106,38 @@ export class StudyService {
     return this.http
       .post<ResultDTO>(`${this.backend}/checkAnswer`,
         { email, title, question, selectedOptions },
+        { headers: { 'Authorization': this.token } }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  getProject(email: string, projectName: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .get<ProjectContentDTO>(`${this.backend}/getProject`, {
+        params: { email, projectName },
+        headers: { 'Authorization': this.token }
+      }).pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(() => err.error.message);
+        })
+      );
+  }
+
+  checkSolution(email: string, projectName: string, solution: string) {
+    if (!this.token) {
+      return throwError(() => new Error('Нет токена'));
+    }
+
+    return this.http
+      .post<TestResultDTO>(`${this.backend}/checkSolution`,
+        { email, projectName, solution },
         { headers: { 'Authorization': this.token } }
       ).pipe(
         catchError((err: HttpErrorResponse) => {

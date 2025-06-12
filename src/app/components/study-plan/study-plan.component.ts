@@ -43,7 +43,6 @@ export class StudyPlanComponent implements OnInit {
           lessonList.push({ title: 'Работа над проектом', order: lessonList.length + 1 });
 
           const completedCount = data.progress?.completedLessons?.length ?? 0;
-          // const completedCount = 5;
           const nextOrder = completedCount + 1;
 
           this.lessons = lessonList.map(lesson => ({
@@ -52,7 +51,6 @@ export class StudyPlanComponent implements OnInit {
           }));
         }
 
-        console.log(data);
         this.isLoading = false;
       }
     })

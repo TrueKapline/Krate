@@ -1,1 +1,67 @@
-<p>project works!</p>
+@if (!isPending) {
+  <div class="wrapper">
+    <a class="go-back" (click)="goBack()">⇐ Назад</a>
+    <h1 class="project-name">Выполнение проекта</h1>
+
+    <theory
+      [content]="projectContent"
+    ></theory>
+
+    <h2 class="project-name">Ваше решение</h2>
+
+    <monaco-editor
+      [language]="'python'"
+      [(ngModel)]="projectSolution"
+      class="editor"
+    ></monaco-editor>
+
+    @if (isProgramFailed) {
+      <div class="wrong">
+        <p class="wrong--msg">Ошибка!</p>
+        @for (error of programErrors; track error) {
+          <p class="wrong--msg">{{ error }}</p>
+        }
+      </div>
+    } @else if (isProgramFailed !== undefined && !isProgramFailed || projectSolution() !== '') {
+      <div class="correct">
+        <p class="correct--msg">Проект успешно выполнен!</p>
+      </div>
+    }
+
+    @if (!projectSolution()) {
+      <krate-button
+        label="Отправить"
+        type="button"
+        size="medium"
+        (click)="onClick()"
+      ></krate-button>
+    }
+  </div>
+} @else {
+  <div class="wrapper">
+    <ngx-skeleton-loader
+      [theme]="{ height: '20px', width: '100px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      [theme]="{ height: '50px', width: '400px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader
+      [theme]="{ 'background-color': 'var(--loader-color)' }"
+      [count]="10"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader
+      [theme]="{ height: '50px', width: '400px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+
+    <ngx-skeleton-loader
+      [theme]="{ height: '300px', 'background-color': 'var(--loader-color)' }"
+      animation="pulse"
+    ></ngx-skeleton-loader>
+  </div>
+}

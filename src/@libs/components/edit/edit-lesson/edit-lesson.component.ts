@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditService } from '../../../services/edit/edit.service';
 import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
@@ -41,7 +41,7 @@ export class EditLessonComponent implements OnInit {
   @Input() lessonName: string = '';
 
   switcherItems = ['Урок', 'Задания'];
-  currentPage: 'Урок' | 'Задания' = 'Урок';
+  currentPage = signal<string>('Урок')
 
   isModalOpen = false;
   modalType: 'name' | 'delete' | null = null;
@@ -67,10 +67,6 @@ export class EditLessonComponent implements OnInit {
         }
       })
     });
-  }
-
-  onSwitcherClick(item: 'Урок' | 'Задания') {
-    this.currentPage = item
   }
 
   openModal(modalType: 'name' | 'delete') {

@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudyService } from '../../../services/study/study.service';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -6,13 +6,17 @@ import { LineSwitcherComponent } from '../../krate-ui/line-switcher/line-switche
 import { TheoryComponent } from './theory/theory.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { Exercises } from '../../../services/study/types/lesson-content-dto.interface';
+import { KrateButtonComponent } from '../../krate-ui/krate-button/krate-button.component';
+import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-lesson',
   imports: [
     LineSwitcherComponent,
     TheoryComponent,
-    ExercisesComponent
+    ExercisesComponent,
+    KrateButtonComponent,
+    NgxSkeletonLoaderComponent
   ],
   templateUrl: './lesson.component.html',
   styleUrl: './lesson.component.scss'
@@ -29,8 +33,10 @@ export class LessonComponent implements OnInit {
 
   private userEmail = this.authService.userEmail();
 
+  isPending = true;
+
   switcherItems = ['Урок', 'Задания'];
-  currentPage: 'Урок' | 'Задания' = 'Урок';
+  currentPage = signal<string>('Урок')
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -41,17 +47,18 @@ export class LessonComponent implements OnInit {
           this.lessonName = response.title;
           this.lessonContent = response.content;
           this.lessonExercises = response.exercises;
-          console.log(response);
+          this.isPending = false;
         }
       });
     });
   }
 
-  onSwitcherClick(item: 'Урок' | 'Задания') {
-    this.currentPage = item
-  }
-
   goBack() {
     this.router.navigate(['/study-plan']).then();
+  }
+
+  onClick() {
+    this.currentPage.set('Задания');
+    window.scrollTo(0, 0);
   }
 }
